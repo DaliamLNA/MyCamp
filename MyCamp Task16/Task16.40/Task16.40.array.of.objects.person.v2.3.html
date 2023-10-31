@@ -21,8 +21,7 @@
 
     /*** REGION 3 - Event handlers - Vùng khai báo các hàm xử lý sự kiện */
     function onPageLoading() {
-        // Gọi thử của function getPersonByIndex, ghi object ra console
-
+        // Gọi thử của function getPersonByIndex, ghi object ra console 
     }
 
     /*** REGION 4 - Common funtions - Vùng khai báo hàm dùng chung trong toàn bộ chương trình*/
@@ -43,6 +42,7 @@
         //  
         while (vPersonFound == false && vPersonIndex < vLIST_PERSON.length) {
             if (vLIST_PERSON[vPersonIndex].citizenID == paramCitizenID) {
+                vPersonFound = true;
                 vPersonObj = vLIST_PERSON[vPersonIndex];
             }
             else {
