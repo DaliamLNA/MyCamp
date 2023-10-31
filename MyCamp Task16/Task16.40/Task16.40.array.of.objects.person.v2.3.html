@@ -22,9 +22,9 @@
     /*** REGION 3 - Event handlers - Vùng khai báo các hàm xử lý sự kiện */
     function onPageLoading() {
         // Gọi thử của function getPersonByIndex, ghi object ra console
-
+        getPersonByIndex(1);
         // Gọi thử hàm getPersonByCitizenID() và ghi object ra console
-
+        getPersonByCitizenID("E9442");
     }
 
     /*** REGION 4 - Common funtions - Vùng khai báo hàm dùng chung trong toàn bộ chương trình*/
@@ -38,7 +38,21 @@
 
     // bạn hãy viết function trả lại person theo citizenID 
     function getPersonByCitizenID(paramCitizenID) {
-
+        // Giá trị ban đầu
+        var vPersonObj = null;
+        var vPersonIndex = 0;
+        var vPersonFound = false;
+        //  
+        while (vPersonFound == false && vPersonIndex < vLIST_PERSON.length) { 
+            if (vLIST_PERSON[vPersonIndex].citizenID == paramCitizenID) { 
+                vPersonObj = vLIST_PERSON[vPersonIndex];
+            }
+            else {  
+                vPersonIndex ++;
+            }
+        }
+        return vPersonObj;
+        console.log(vPersonObj);
     }
 
 </script>
