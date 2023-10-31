@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <tittle>8.3 Background changer</tittle>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+        @media (min-width: 320px) {
+            .Smartphones {
+                background-color: blue;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .TabletsPortrait {
+                background-color: green;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .TabletsLandscape {
+                background-color: yellow;
+            }
+        }
+
+        @media (min-width: 1224px) {
+            .Desktops {
+                background-color: orange;
+            }
+        }
+
+        @media (min-width: 1824px) {
+            .LargeScreen {
+                background-color: aqua;
+            }
+        }
+        @media (min-width: 850px) and (max-width: 950px) {  
+            .Custom {   
+                background-color: purple;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h1>CSS Media Queries</h1>
+    <p>Sử dụng CSS thay đổi màu nền khi kích thước thay đổi (Xem mô tả bên dưới).</p>
+    <hr />
+    <!-- -------------------------------------------------------------------------------- -->
+    <h3 class="Smartphones">Smartphones - <span class="details">from 320px and up </span>(min-width: 320px)</h3>
+    <p>BLUE</p>
+    <br>
+    <h3 class="TabletsPortrait">Tablets, iPads (portrait) - <span class="details">from 768px and up</span> (min-width:
+        768px)</h3>
+    <p>GREEN</p>
+    <br>
+
+    <h3 class="TabletsLandscape">Tablets, iPads (landscape) - <span class="details">from 1024px and up
+        </span>(min-width: 1024px)</h3>
+    <p>YELLOW</p>
+    <br>
+
+    <h3 class="Desktops">Desktops and laptops - <span class="details">from 1224px and up </span>(min-width: 1224px)</h3>
+    <p>ORANGE</p>
+    <br>
+
+    <h3 class="LargeScreen">Large screens - <span class="details">from 1824px and up </span>(min-width: 1824px)</h3>
+    <p>AQUA</p>
+    <br>
+
+    <h3 class="Custom">Custom media query - <span class="details">from 850px and up, until 950px </span>(min-width: 850px) and
+        (max-width: 950px)</h3>
+    <p> PURPLE</p>
+    <br>
+</body>
+
+</html>

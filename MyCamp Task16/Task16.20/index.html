@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LIST OF CARS</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Open+Sans:wght@300&display=swap"
+        rel="stylesheet">
+</head>
+
+<script>
+    "use strict";
+    /*** REGION 1 - Global variables - Vùng khai báo biến, hằng số, tham số TOÀN CỤC */
+    // CAR_DB: mảng chứa danh sách các đối tượng ô tô (car)
+    var gListCars = [
+        {
+            brand: "Ford", model: "Explorer", year: 2017, color: "white", carImg: "images/cars/ford_explorer_2017.png",
+            vID: "AB-10111", owner: "Morris Mccoy", ownerAvatar: "images/owners/morris_mccoy.jpg"
+        },
+        {
+            brand: "Toyota", model: "Corolla", year: 2018, color: "silver", carImg: "images/cars/toyota_corolla_2018.png",
+            vID: "DN-23218", owner: "Claire Robertson", ownerAvatar: "images/owners/claire_robertson.jpg"
+        },
+        {
+            brand: "Mazda", model: "Mazda 6", year: 2020, color: "red", carImg: "images/cars/mazda_2020_red.png",
+            vID: "TZ-23212", owner: "Ted Hawkins", ownerAvatar: "images/owners/ted_hawkins.jpg"
+        },
+        {
+            brand: "Toyota", model: "Fortuna", year: 2016, color: "black", carImg: "images/cars/toyota-fortuner_black.png",
+            vID: "IN-91925", owner: "Juanita Bell", ownerAvatar: "images/owners/juanita_bell.jpg"
+        },
+        {
+            brand: "Honda", model: "Civic", year: 2020, color: "black", carImg: "images/cars/honda_civic_2020.png",
+            vID: "MN-44593", owner: "Clevaio Simon", ownerAvatar: "images/owners/clevaio_simon.jpg"
+        }
+    ];
+
+    /*** REGION 2 - Vùng gán / thực thi hàm xử lý sự kiện cho các elements */
+
+    /*** REGION 3 - Event handlers - Vùng khai báo các hàm xử lý sự kiện */
+    function onPageLoading() {
+        // Code để chạy thử test hàm getCarByIndex()
+        var vCarA = getCarByIndex(1); // hàm này trả về một đối tượng
+        console.log("Car found by getCarByIndex, index = " + 1);
+        console.log(vCarA.brand);
+        console.log(vCarA.model);
+        console.log(vCarA.color);
+        // Ẩn vùng not found
+        var vNotFound = document.getElementById('div-not-found');
+        vNotFound.style.display = "none";
+        // Chạy hàm load oto
+        loadCarlist()
+    }
+
+    /*** REGION 4 - Common funtions - Vùng khai báo hàm dùng chung trong toàn bộ chương trình */
+    /* đây là 01 function đã trả lại object car bởi index.
+     bạn hãy tham khảo cách trả lại khi tìm thấy và không tìm thấy */
+    function getCarByIndex(paramIndexOfCar) {
+        //if the input index not in the invalid range (index đưa vào không có trong array gCAR_DB)
+        if (paramIndexOfCar < 0 || paramIndexOfCar > gListCars.length - 1) {
+            return null; // null là đối tượng rỗng
+        }
+        // nếu có thì return object ở vị trí đó
+        return gListCars[paramIndexOfCar];
+    }
+
+    /* bạn hãy viết function trả lại car object dựa vào VID
+     gợi ý tìm kiếm "while loop javascript" */
+    function getCarByVId(paramCarVId) {
+        // Gán các giá trị ban đầu
+        var vCarObj = null;
+        var vCarIndex = 0;
+        var vCarFound = false;
+        // khi chưa tìm thấy oto và  chưa tìm thấy kết quả thì tìm tiếp dùng vòng while
+        while (vCarFound == false && vCarIndex < gListCars.length) {
+            if (gListCars[vCarIndex].vID == paramCarVId) {
+                vCarFound = true;
+                vCarObj = gListCars[vCarIndex];
+            }
+            else {
+                vCarIndex++;
+            }
+        }
+        return vCarObj;
+    }
+    // Car Finding ########################
+    function onBtnClickSearch() {
+        // truy xuất phần tử
+        var vCarFound = null;
+        var vCarvIDInput = document.getElementById("input-vid");
+        var vCarvIDValue = vCarvIDInput.value.trim();
+        // nếu không nhập
+        if (vCarvIDValue == "") {
+            alert("Bạn cần nhập biển số")
+        }
+        else {
+            // Có nhập mới tìm 
+            var vCarFound = getCarByVId(vCarvIDValue);
+            if (vCarFound != null) { // Khác null là tìm thấy
+                // Tìm thấy
+                var vDivListCar = document.getElementById("div-list-cars");
+                // Loại bỏ các xe còn lại
+                vDivListCar.innerHTML = "";
+                // Gán các giá trị vào car tìm được
+                vDivListCar = vDivListCar.innerHTML += `        <div class="car">
+            <div class="left-content">
+                <img src="${vCarFound.carImg}" alt="img">
+            </div>
+            <div class="right-content">
+                <div class="right__header">
+                    <div class="right__brand">${vCarFound.brand}</div>
+                    <div class="right__model">${vCarFound.model}</div>
+                    <div class="right__vid">${vCarFound.vID}</div>
+                </div>
+                <div class="right__title">
+                  ${vCarFound.brand + ` - ` + vCarFound.model + ` - ` + vCarFound.year + ` - ` + vCarFound.color}
+                </div>
+                <div class="right__footer">
+                    <div class="footer__owner">
+                        <div class="avatar">
+                            <img src="${vCarFound.ownerAvatar}" alt="">
+                        </div>
+                        <div class="owner-name">${vCarFound.owner}</div>
+                    </div>
+                    <div class="footer__readmore">
+                        View detail 🡢
+                    </div>
+                </div>
+            </div>
+        </div>`
+
+            }
+            else { // Ko tìm thấy
+                var vDivListCar = document.getElementById("div-list-cars");
+                vDivListCar.innerHTML = "";
+                var vNotFound = document.getElementById('div-not-found');
+                vNotFound.style.display = "block";
+            }
+        }
+    }
+
+    // Reveal car list
+    function loadCarlist() {
+        var vDivListCar = document.getElementById("div-list-cars");
+
+        for (var bI = 1; bI < gListCars.length + 1; bI++) {
+            vDivListCar.innerHTML += `        <div class="car">
+            <div class="left-content">
+                <img src="${gListCars[bI].carImg}" alt="img">
+            </div>
+            <div class="right-content">
+                <div class="right__header">
+                    <div class="right__brand">${gListCars[bI].brand}</div>
+                    <div class="right__model">${gListCars[bI].model}</div>
+                    <div class="right__vid">${gListCars[bI].vID}</div>
+                </div>
+                <div class="right__title">
+                  ${gListCars[bI].brand + ` - ` + gListCars[bI].model + ` - ` + gListCars[bI].year + ` - ` + gListCars[bI].color}
+                </div>
+                <div class="right__footer">
+                    <div class="footer__owner">
+                        <div class="avatar">
+                            <img src="${gListCars[bI].ownerAvatar}" alt="">
+                        </div>
+                        <div class="owner-name">${gListCars[bI].owner}</div>
+                    </div>
+                    <div class="footer__readmore">
+                        View detail 🡢
+                    </div>
+                </div>
+            </div>
+        </div>`
+        }
+    }
+</script>
+
+<body onload="onPageLoading()">
+    <div class="search-section">
+        <div class="search__title">
+            ỨNG DỤNG TÌM KIẾM Ô TÔ
+        </div>
+        <div class="search-box">
+            <div class="search__label">Nhập VID</div>
+            <div class="search__input">
+                <input type="text" placeholder="Nhập biển số ..." id="input-vid">
+            </div>
+            <div class="search__button">
+                <button onclick="onBtnClickSearch()">Tìm kiếm</button>
+            </div>
+        </div>
+    </div>
+    <div class="list-cars" id="div-list-cars">
+        <div class="car">
+            <div class="left-content">
+                <img src="images/cars/ford_explorer_2017.png" alt="img">
+            </div>
+            <div class="right-content">
+                <div class="right__header">
+                    <div class="right__brand">FORD</div>
+                    <div class="right__model">Explorer</div>
+                    <div class="right__vid">AB-10111</div>
+                </div>
+                <div class="right__title">
+                    Ford - Explorer - 2017 - White
+                </div>
+                <div class="right__footer">
+                    <div class="footer__owner">
+                        <div class="avatar">
+                            <img src="images/owners/claire_robertson.jpg" alt="">
+                        </div>
+                        <div class="owner-name">Claire Robertson</div>
+                    </div>
+                    <div class="footer__readmore">
+                        View detail 🡢
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="not-found" id="div-not-found">
+        <img src="images/not-found.png" width="15%" alt="">
+        <div class="not-found__text">
+            Không tìm thấy ô tô nào với VID đã nhập
+        </div>
+    </div>
+</body>
+
+</html>

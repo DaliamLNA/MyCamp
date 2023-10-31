@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 13.50 Project : Welcome Developer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body onload="loadpage()">
+    <div class="container">
+        <div class="title">WELCOME TO THE WORLD OF DEVELOPER</div>
+        <div class="firstname">
+            <label>Họ và đệm</label>
+            <input type="text" placeholder="Họ và đệm" id="firstname">
+        </div>
+        <div class="lastname">
+            <label>Tên</label>
+            <input type="text" placeholder="Tên" id="lastname">
+        </div>
+        <div class="message">
+            <label>Lời nhắn</label>
+            <input type="text" placeholder="Lời nhắn" id="message">
+        </div>
+        <div class="send-area"> <button class="send" onclick="Welcome()">Gửi lời chào</button> </div>
+        <div class="sponsors">
+            <img src="images/google.png">
+            <img src="images/netflix.png">
+            <img src="images/airbnb.png">
+            <img id="amazon" src="images/amazon.png">
+            <img id="facebook" src="images/facebook.png">
+            <img id="grab" src="images/grab-logo.png">
+        </div>
+    </div>
+</body>
+<script>
+    function loadpage() {
+        var firstname = document.getElementById('firstname')
+        console.log(`id: `,firstname.id);
+        console.log("placeholder :",firstname.placeholder);
+        var lastname = document.getElementById('lastname')
+        console.log(`id: `,lastname.id);
+        console.log("placeholder :",lastname.placeholder);
+        var message = document.getElementById('message')
+        console.log(`id: `,message.id);
+        console.log("placeholder :",message.placeholder);
+    }
+    function Welcome() {
+        var message = document.getElementById('message').value;
+        var firstname = document.getElementById('firstname').value;
+        var lastname = document.getElementById('lastname').value;
+        let welcomingmessage = ` ${message} ${firstname} ${lastname} `
+        alert(welcomingmessage);
+    }
+</script>
+
+</html>

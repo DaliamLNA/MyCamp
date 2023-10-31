@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+<body>
+  <div class="container jumbotron p-5 mt-4">
+    <div class="text-center mb-5">
+      <h2>Responsive Register Form</h2>
+    </div>
+    <div class="row form-group">
+      <label class="col-sm-2 col-form-label" for="inp-fname">First Name</label>
+      <div class="col-sm-4">
+        <input type="text" id="inp-fname" name="firstname" placeholder="Your name.." class="form-control">
+      </div>
+
+      <label class="col-sm-2 col-form-label" for="inp-lname">Last Name</label>
+      <div class="col-sm-4">
+        <input type="text" id="inp-lname" name="lastname" placeholder="Your last name.." class="form-control">
+      </div>
+    </div>
+    <div class="row form-group">
+      <label class="col-sm-2 col-form-label">Country</label>
+      <div class="col-sm-4">
+        <select id="select-country" name="country" class="form-control">
+          <option value="01-au">Australia</option>
+          <option value="02-ca">Canada</option>
+          <option value="03-us">USA</option>
+          <option value="04-cn">China</option>
+        </select>
+      </div>
+      <label class="col-sm-2 col-form-label">Region</label>
+      <div class="col-sm-4">
+        <input type="text" id="inp-region" name="regioninput" placeholder="Your region.." class="form-control">
+      </div>
+    </div>
+    <div class="row form-group">
+      <label class="col-sm-2 col-form-label">Gender</label>
+      <div class="col-sm-4">
+        <select name="gender" id="select-gender" class="form-control">
+          <option value="1">Male</option>
+          <option value="0">Female</option>
+        </select>
+      </div>
+      <label class="col-sm-2 col-form-label">Age</label>
+      <div class="col-sm-4">
+        <input type="text" id="input-age" name="Age" placeholder="Age" class="form-control">
+      </div>
+    </div>
+    <div class="row form-group">
+      <label class="col-sm-2 col-form-label">Purpose</label>
+      <div class="col-sm-4">
+        <select name="purpose" id="select-purpose" class="form-control">
+          <option value="01-B">Business</option>
+          <option value="02-P">Private</option>
+          <option value="03-T">Tourist </option>
+          <option value="04-M">Medical</option>
+        </select>
+      </div>
+      <label class="col-sm-2 col-form-label">Address</label>
+      <div class="col-sm-4">
+        <input type="text" id="input-address" name="Address" placeholder="Address" class="form-control">
+      </div>
+    </div>
+    <div class="row form-group text-right">
+      <div class="col-sm-12">
+        <button class="btn btn-info px-4" id="btn-send" onclick="onBtnClickSend()">Send</button>
+      </div>
+    </div>
+  </div>
+</body>
+<script>
+  "use strict";
+  /*** REGION 1 - Global variables - Vùng khai báo biến, hằng số, tham số TOÀN CỤC */
+
+  /*** REGION 2 - Vùng gán / thực thi hàm xử lý sự kiện cho các elements */
+
+  /*** REGION 3 - Event handlers - Vùng khai báo các hàm xử lý sự kiện */
+  function onBtnClickSend() {
+    "use strict";
+    // Khai báo biến
+    var vPerson = { firstName: "", lastName: "", country: "", region: "", gender: "", age: "", purpose: "", address: "" }
+    // Truy xuất value các danh mục
+    var vFirstName = document.getElementById('inp-fname').value;
+    var vLastName = document.getElementById('inp-lname').value;
+    var vCountry = document.getElementById('select-country').value;
+    var vRegion = document.getElementById('inp-region').value;
+    var vGender = document.getElementById('select-gender').value;
+    var vAge = parseInt(document.getElementById('input-age').value);
+    var vPurpose = document.getElementById('select-purpose').value;
+    var vAddress = document.getElementById('input-address').value;
+    // Gán các giá trị value đã truy xuất vào object Person
+    vPerson.firstName = vFirstName;
+    vPerson.lastName = vLastName;
+    vPerson.country = vCountry;
+    vPerson.region = vRegion;
+    vPerson.gender = vGender;
+    vPerson.age = vAge;
+    vPerson.purpose = vPurpose;
+    vPerson.address = vAddress;
+    // Console log
+    console.log(vPerson);
+  }
+  /*** REGION 4 - Common funtions - Vùng khai báo hàm dùng chung trong toàn bộ chương trình*/
+
+</script>
+
+</html>

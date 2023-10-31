@@ -1,0 +1,74 @@
+@import url('https://fonts.googleapis.com/css2?family=Kodchasan&family=Slabo+13px&display=swap');
+
+body {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container {
+    width: 1920px;
+    height: 1080px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #F4F2DD;
+}
+
+hr {
+    width: 1668.715px;
+    height: 1px;
+}
+
+hr:first-child {
+    margin-top: 70px;
+}
+
+.small-container {
+    display: flex;
+    margin-left: 18px;
+    margin-top: 17px;
+    margin-bottom: 17px;
+}
+
+.content {
+    width: 545.767px;
+    height: 906.429px;
+    background-color: white;
+    margin-right: 18px;
+    border: none;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#content1 {
+    background-image: url('image\ 15.png');
+}
+
+#content2 {
+    background-image: url('image\ 11.png');
+}
+
+#content3 {
+    background-image: url('image\ 12.png');
+}
+
+/* ==========content=========== */
+.content p {
+    color: #34322D;
+    font-family: Kodchasan;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    width: 235.583px;
+    height: 231.429px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(178, 174, 127, 0.40);
+}

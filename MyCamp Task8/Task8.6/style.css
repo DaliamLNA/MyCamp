@@ -1,0 +1,112 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Slabo+13px&display=swap');
+
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f5f5f5;
+}
+
+.container {
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 160px 195px 160px 195px;
+}
+
+/* content */
+.header {
+    color: var(--primary-text-color, #FF6551);
+    font-family: Montserrat;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 24px;
+    letter-spacing: 0.2px;
+}
+
+.title {
+    color: var(--text-color, #252B42);
+    font-family: Montserrat;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 50px;
+    letter-spacing: 0.2px;
+    margin-top: 10px;
+}
+
+.description {
+    color: var(--second-text-color, #737373);
+    font-family: Montserrat;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
+    letter-spacing: 0.2px;
+    margin-top: 10px;
+}
+
+.review-wall {
+    display: flex;
+    margin-top: 105px;
+}
+
+.reviewers {
+    width: 350px;
+    display: flex;
+    padding: 10px;
+    flex-direction: column;
+    align-items: center;
+}
+
+.review-comment {
+    color: var(--second-text-color, #737373);
+    text-align: center;
+    width: 159px;
+    font-family: Montserrat;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
+    letter-spacing: 0.2px;
+}
+
+.review-profile {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.review-name {
+    color: var(--primary-text-color, #FF6551);
+    font-family: Montserrat;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 24px;
+    letter-spacing: 0.2px;
+}
+
+.review-job {
+    color: var(--text-color, #252B42);
+    font-family: Montserrat;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 16px;
+    letter-spacing: 0.2px;
+}
+@media (max-width : 500px) {    
+    .review-wall {  
+        flex-direction: column;
+        width: auto;
+        height: auto;
+    }
+    .header-content {   
+        display: flex;
+        flex-wrap: wrap;
+    }
+}

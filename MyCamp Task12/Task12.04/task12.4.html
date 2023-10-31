@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 12.4</title>
+
+<body>
+    <h1>Task 12.4</h1>
+</body>
+<script>
+    var NumberArray = [10, 3, 5, 9, 30, 8, 100, 45];
+    var StringArray = ["Nha Trang", "Hà Nội", "Vũng Tàu", "Cần Thơ", "Quảng Ninh", "Bắc Giang"]
+    console.log(NumberArray[1]);
+    console.log(NumberArray[4]);
+    console.log(NumberArray[7]);
+    console.log(StringArray[2]);
+    console.log(StringArray[3]);
+    console.log(StringArray[5]);
+    for (var iNumber = 0; iNumber < NumberArray.length; iNumber++) {
+        NumberArray[iNumber] = NumberArray[iNumber] + 10;
+        console.log(NumberArray[iNumber]);
+    }
+    for (var iString = 0; iString < StringArray.length; iString++) {
+        StringArray[iString] = "Xin Chào " + StringArray[iString];
+        console.log(StringArray[iString]);
+    }
+    let PhuYen = "Phú Yên"
+    const NewString = [
+        ...StringArray.slice(0, 2), PhuYen, ...StringArray.slice(2) 
+    ]
+    console.log (NewString)
+    let Index = StringArray.indexOf("Xin Chào Hà Nội");
+    console.log(Index)
+</script>
+
+</html>

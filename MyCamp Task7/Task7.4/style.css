@@ -1,0 +1,86 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Raleway:ital,wght@1,500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Open+Sans&family=Raleway:ital,wght@1,500&display=swap');
+
+body {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f5f5f5;
+}
+
+.container {
+    width: 888px;
+    height: 224px;
+    background-color: #FFFFFF;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+/* =======================Content========================== */
+
+.logo {
+    width: 128px;
+    height: 144px;
+    background: var(--cards-5-gradient-2, linear-gradient(315deg, #4481EB 0%, #04BEFE 100%));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 40px;
+}
+
+.content {
+    margin-left: 32px;
+    text-align: left;
+    width: 392px;
+}
+
+.title {
+    color: var(--heading-text, #081F32);
+    font-family: DM Serif Display;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 25px;
+}
+
+.author {
+    color: var(--cards-4-info-text, #A5ADBB);
+    font-family: Open Sans;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 25px;
+}
+
+.description {
+    color: var(--additional-text, #6E798C);
+    font-family: Open Sans;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 25px;
+}
+
+.info {
+    margin-left: 82px;
+}
+
+.info-content {
+    display: flex;
+    align-items: center;
+    color: var(--additional-text, #6E798C);
+    font-family: Open Sans;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 25px;
+}
+
+.number {
+    margin-left: 15px;
+    margin-right: 5px;
+    color: black;
+}

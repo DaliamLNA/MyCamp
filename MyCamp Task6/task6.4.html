@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animation blocks</title>
+    <style>
+        @keyframes animation {  
+            0% { height: 20px; width: 1px;}
+            50% {height: 30px; width: 10px;}
+            60% {width: 20px;}
+            100% {height: 40px;}
+        }
+        .div {   
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 40px;
+        }
+        .div span { 
+            animation-name: animation;
+            margin: 10px;
+        }
+        .div span:nth-child(1) {  
+            background-color: #2196f3;
+            animation-delay: 0s;
+            width: 20px;
+            height: 40px;
+            animation-direction: alternate;
+            animation-iteration-count: infinite;
+            animation-duration: 1.2s
+        }
+        .div span:nth-child(2) { 
+            background-color: #DE0E42;
+            animation-delay: 0.5s;
+            width: 20px;
+            height: 40px;
+            animation-direction: alternate;
+            animation-iteration-count: infinite;
+            animation-duration: 1.2s;
+        }
+        .div span:nth-child(3) { 
+            background-color: #8bc34a;
+            animation-delay: 0.6s;
+            width: 20px;
+            height: 40px;
+            animation-direction: alternate;
+            animation-iteration-count: infinite;
+            animation-duration: 1.2s;
+        }
+        .div span:nth-child(4) { 
+            background-color: #ffc107;
+            animation-delay: 0.3s;
+            width: 20px;
+            height: 40px;
+            animation-direction: alternate;
+            animation-iteration-count: infinite;
+            animation-duration: 1.2s;
+        }
+    </style>
+</head>
+<body>
+    <div class="div">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+</body>
+</html>

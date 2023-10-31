@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 15.70 - Simple change title color</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="text-title">ĐỔI MÀU TIÊU ĐỀ THEO NÚT TƯƠNG ỨNG</div>
+        <div class="text-base" id="text-base">Hello Devcamp 120. Chúc bạn thành công trên con đường Developer</div>
+        <div class="button-container">
+            <button id="btn-red" onclick="onBtnRedColorClick()">To Red</button>
+            <button id="btn-blue" onclick="onBtnBlueColorClick()">To Blue</button>
+            <button id="btn-green" onclick="onBtnGreenColorClick()">To Green</button>
+        </div>
+    </div>
+</body>
+<script>
+    // || Vùng 1: định nghĩa global variables(biến toàn cục)
+    const vText = document.getElementById('text-base');
+    // || Vùng 2: event handlers - function xử lý sự kiện
+    function onBtnRedColorClick() {
+        debugger;
+        vText.style.color = "red"
+    }
+    function onBtnBlueColorClick() {
+        debugger;
+        vText.style.color = "blue"
+    }
+    function onBtnGreenColorClick() {
+        debugger;
+        vText.style.color = "green"
+    }
+    // || Vùng 3: function (hàm) dùng chung
+
+</script>
+
+</html>

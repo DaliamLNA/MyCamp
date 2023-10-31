@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 12.06</title>
+</head>
+
+<body>
+    <h1>Task 12.06</h1>
+</body>
+<script>
+    // TASK1
+    function task1(a, n) {
+        var result = a[n]
+        return result;
+    }
+    var kqtask1 = task1([1, 2, 3, 4], 1);
+    console.log(kqtask1);
+    // TASK2
+    function task2(n) {
+        var myarray = n.sort();
+        return myarray;
+    }
+    var kqtask2 = task2([3, 8, 7, 6, 5, -4, -3, 2, 1]);
+    console.log(kqtask2)
+    // TASK3
+    function task3(array1, arr2) {
+        var array = [...array1, ...arr2];
+        return array;
+    }
+    var kqtask3 = task3([10, 7, 3], [4, 8, 6]);
+    console.log(kqtask3);
+    // TASK4
+    function task4(a) {
+        for (i = 0; i < a.length; i++) {
+            if (typeof a[i] != "number") {
+                delete a[i];
+            }
+        }
+        var newarray = a.filter(Element => Element);
+        return newarray;
+    }
+    var kqtask4 = task4([NaN, 0, 15, false, -22, '', undefined, 47, null]);
+    console.log(kqtask4);
+    // TASK5
+    function task5(a, n) {
+        let X = a.indexOf(n);
+        delete a[X];
+        var newarray = a.filter(elm => elm);
+        return newarray;
+    }
+    var kqtask5 = task5([2, 5, 9, 6], 5);
+    console.log(kqtask5);
+    // TASK6
+    function task6(a) { 
+        for (i = 0; i < a.length; i ++) {   
+            if (a[i] % 2 != 0) {    
+                delete a[i];
+            }
+        }
+        var newarray = a.filter(elm=>elm)
+        return newarray;
+    }
+    var kqtask6 = task6([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+    console.log(kqtask6);
+</script>
+
+</html>

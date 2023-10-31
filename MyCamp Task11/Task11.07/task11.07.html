@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>task 11.07</title>
+</head>
+
+<body>
+    <h3>Task 11.06 - Các bài toán xử lý với chuỗi</h3>
+</body>
+<script>
+    //Yc1
+    function Reversestring(Input) {
+        var string = Input;
+        var reversedstring = string.split('').reverse().join('')
+        return reversedstring;
+    }
+    var ReversestringResult = Reversestring("Hello ae");
+    console.log(ReversestringResult);
+    //Yc2
+    function Yc2(Input) {
+        var string = Input;
+        var splitletter = string.split('a');
+        var splitletterlength = splitletter.length-1    ;
+        return splitletterlength;
+    }
+    var Yc2Result = Yc2("xin chao anh em nha")
+    console.log(Yc2Result);
+//Yc3
+    function Yc3(Input) {   
+        var string = Input;
+        var postInput = "the"
+        var splitletter = string.split(postInput);
+        var splitletterlength = splitletter.length;
+        return splitletterlength;
+    }
+    var Yc3Result = Yc3("The dog is hunting the cat and the mouse");
+    console.log(Yc3Result);
+</script>
+
+</html>

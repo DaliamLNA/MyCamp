@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 11.06</title>
+</head>
+
+<body>
+    <h3>Task 11.06 - Các bài toán xử lý với chuỗi</h3>
+</body>
+<script type="text/javascript">
+    // Yc1
+    function StringCheck(Input) {
+        var Result = typeof Input == "string";
+        return Result;
+    }
+    var StringCheckResult = StringCheck("Hello");
+    console.log(StringCheckResult);
+    // Yc2
+    function StringCut(Input) {
+        var Result = Input.slice(0, 7);
+        return Result;
+    }
+    var StringCutResult = StringCut("12345678910");
+    console.log(StringCutResult);
+    // Yc3
+    function StringUpperCaseFirstLetter(Input) {
+        var string = Input;
+        var UpperCaseString = string => string[0].toUpperCase() + string.slice(1).toLowerCase();
+        var UpperCaseResult = string.split(' ').map(UpperCaseString).join(' ');
+        return UpperCaseResult;
+    }
+    var StringUpperCaseFirstLetterResult = StringUpperCaseFirstLetter("js string exercises")
+    console.log(StringUpperCaseFirstLetterResult);
+    // Yc4
+    function StringCutBlanks(Input) {   
+        var Result = Input.trim();
+        return Result
+    }
+    var StringCutBlanksResult = StringCutBlanks(" Hello ");
+    console.log(StringCutBlanksResult);
+</script>
+
+</html>

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    input[type=text],
+    select,
+    textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      resize: vertical;
+    }
+
+    label {
+      padding: 12px 12px 12px 0;
+      display: inline-block;
+    }
+
+    h2 {
+      text-align: center;
+    }
+
+    .button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      float: left;
+      margin: 2px;
+
+    }
+
+    .container {
+      border-radius: 5px;
+      background-color: #f2f2f2;
+      padding: 20px;
+      margin: 0 1rem;
+    }
+
+    .col-25 {
+      float: left;
+      width: 25%;
+      margin-top: 6px;
+    }
+
+    .col-75 {
+      float: left;
+      width: 75%;
+      margin-top: 6px;
+    }
+
+    /* Clear floats after the columns */
+    .row:after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+
+    /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+    @media screen and (max-width: 600px) {
+
+      .col-25,
+      .col-75 {
+        width: 100%;
+        margin-top: 0;
+      }
+    }
+  </style>
+  <script>
+    "use strict";
+    /*** REGION 1 - Global variables - Vùng khai báo biến, hằng số, tham số TOÀN CỤC */
+    /*** REGION 2 - Event handlers - Vùng khai báo các hàm xử lý sự kiện */
+    // Khi tải trang
+    function onPageLoad() {
+      // Lấy giá trị của các ô input
+      var vFirstName = document.getElementById('input-first-name');
+      var vLastName = document.getElementById('input-last-name');
+      var vCountry = document.getElementById('select-country');
+      var vMessage = document.getElementById('textarea-message');
+      // Ghi ra console id, placeholder
+      console.log("id:", vFirstName.id, "- place holder :", vFirstName.placeholder);
+      console.log("id:", vLastName.id, "- place holder :", vLastName.placeholder);
+      console.log("id:", vCountry.id, "- place holder :", vCountry.placeholder);
+      console.log("id:", vMessage.id, "- place holder :", vMessage.placeholder);
+    }
+    function onButtonSendClick() {  
+      // Sau khi click nút, ghi ra console
+      console.log("Nút Send data vừa được ấn");
+      // Khai báo biến và Lấy value của các ô input
+      var vFirstName = document.getElementById('input-first-name').value;
+      var vLastName = document.getElementById('input-last-name').value;
+      var vCountry = document.getElementById('select-country').value;
+      var vMessage = document.getElementById('textarea-message').value;
+      // Khai báo Array
+      var vInfo = {Firstname: "", Lastname: "", Country: "", Message: ""};
+      // Gán các biến vào Object
+      vInfo.Firstname = vFirstName;
+      vInfo.Lastname = vLastName;
+      vInfo.Country = vCountry;
+      vInfo.Message = vMessage;
+      // Ghi ra console các object
+      console.log(vInfo);
+    }
+    /*** REGION 3 - Common funtions - Vùng khai báo hàm dùng chung trong toàn bộ chương trình*/
+  </script>
+</head>
+
+<body onload="onPageLoad()">
+  <h2>Register Form </h2>
+  <div class="container">
+    <div class="row">
+      <div class="col-25">
+        <label for="fname">First Name</label>
+      </div>
+      <div class="col-75">
+        <input type="text" name="firstname" placeholder="Your name.." id="input-first-name">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="lname">Last Name</label>
+      </div>
+      <div class="col-75">
+        <input type="text" name="lastname" placeholder="Your last name.." id="input-last-name">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="country">Country</label>
+      </div>
+      <div class="col-75">
+        <select name="country" id="select-country">
+          <option value="australia">Australia</option>
+          <option value="canada">Canada</option>
+          <option value="usa">USA</option>
+        </select>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="subject">Subject</label>
+      </div>
+      <div class="col-75">
+        <textarea name="subject" placeholder="Write something.." style="height:200px" id="textarea-message"></textarea>
+      </div>
+    </div>
+    <div class="row">
+      <button class="button" onclick="onButtonSendClick()"> Send data </button>
+    </div>
+  </div>
+</body>
+
+</html>

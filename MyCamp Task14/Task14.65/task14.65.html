@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form giải phương trình bậc 2</title>
+    <style>
+        .text-title {   
+            font-size: 30px;
+            font-weight: bold;
+        }
+        .text-description {
+            margin-top: 10px;
+        }
+        .input-number { 
+            margin-top: 15px;
+        }
+        .input-number input {   
+            width: 200px;
+        }
+        .button-solution {  
+            margin-top: 20px;
+            font-size: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="text-title">Giải phương trình bậc 2</div>
+        <div class="text-description">Phương trình bậc 2 có tham số a, b và c</div>
+        <div class="input-number">
+            <label>Số a</label>
+            <span><input type="text" name="input-a" id="input-a" placeholder="Nhập số a"></span>
+        </div>
+        <div class="input-number">
+            <label>Số b</label>
+            <span><input type="text" name="input-b" id="input-b" placeholder="Nhập số b"></span>
+        </div>
+        <div class="input-number">
+            <label>Số c</label>
+            <span><input type="text" name="input-c" id="input-c" placeholder="Nhập số c"></span>
+        </div>
+        <button class="button-solution" onclick="onBtnClickSolve()">Tìm nghiệm</button>
+        <div class="text-answer" id="text-answer"></div>
+    </div>
+    
+</body>
+<script>
+    function onBtnClickSolve() {
+        // Sau khi click
+        console.log(`Tìm nghiệm của phương trình bậc 2`);
+        // ANSWER
+        var vAnswer = document.getElementById('text-answer');
+        // Truy xuất giá trị value của a,b,c
+        var vA = parseInt(document.getElementById('input-a').value);
+        var vB = parseInt(document.getElementById('input-b').value);
+        var vC = parseInt(document.getElementById('input-c').value);
+        // Khai báo delta,phép tính delta và x1 x2
+        var vDelta = vB * vB - 4 * vA * vC;
+        var x1;
+        var x2;
+        var x;
+        // Thực hiện tính
+        if (vDelta >= 0) {
+            if (vDelta > 0) {
+                x1 = (-vB + Math.sqrt(vDelta)) / (2 * vA);
+                x2 = (-vB - Math.sqrt(vDelta)) / (2 * vA);
+                vAnswer.innerHTML = `phương trình có 2 nghiệm phân biệt` + `<br>` + `x1 = ${x1}` + `<br>`+ `x2 = ${x2}`;
+                vAnswer.style.color = `green`
+            }
+            else {
+                x = -vB / (2*vA);
+                vAnswer.innerHTML = `phương trình có 1 nghiệm kép :` + ` x = ${x}`;
+                vAnswer.style.color =  `blue`;
+            }
+        }
+        else {
+            vAnswer.innerHTML = `phương trình vô nghiệm`;
+            vAnswer.style.color =  `red`;
+
+        }
+
+    }
+</script>
+
+</html>

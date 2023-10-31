@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 14.50</title>
+    <style>
+        body {
+            width: 100%;
+            height: 100vh;
+            background-color: gray;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        @media (max-width : 400px) {
+            body {
+                background-color: white;
+            }
+        }
+
+        .container {
+            width: 90%;
+            height: 90%;
+            display: flex;
+            border-radius: 20px;
+            background-color: white;
+        }
+
+        @media (max-width : 400px) {
+            .container {
+                flex-direction: column;
+                width: 100%;
+                height: 100%;
+            }
+        }
+
+        .right-container {
+            height: 100%;
+            width: 60%;
+        }
+
+        @media (max-width : 400px) {
+            .right-container {
+                width: 100%;
+                height: 30%;
+            }
+        }
+
+        .right-container img {
+            height: 100%;
+            width: 100%;
+            border-radius: 20px 0px 0px 20px;
+        }
+
+        @media (max-width : 400px) {
+            .right-container img {
+                border-radius: 0px;
+            }
+        }
+
+        .left-container {
+            background-color: #FFFF;
+            width: 40%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: baseline;
+            border-radius: 0px 20px 20px 0px;
+            padding: 0px 20px 0px 20px;
+        }
+
+        @media (max-width : 400px) {
+            .left-container {
+                width: 100%;
+                height: 70%;
+                padding: 0px;
+            }
+        }
+
+        .left-container-title {
+            font-size: 25px;
+            font-weight: bold;
+            font-family: Arial, Helvetica, sans-serif;
+            margin-top: 50px;
+        }
+
+        @media (max-width : 400px) {
+            .left-container-title {
+                font-size: 18px;
+                margin-top: 20px;
+            }
+        }
+
+        .left-container-paragraph {
+            font-size: 18px;
+            margin-top: 30px;
+        }
+
+        .left-container-input {
+            margin-top: 5px;
+        }
+
+        .left-container-input input {
+            width: 99%;
+            height: 150px;
+            font-size: 20px;
+        }
+
+        @media (max-width : 400px) {
+            .left-container-input input {
+                width: 90%;
+                font-size: 15px;
+            }
+        }
+
+        .left-container-button-area {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 25px;
+        }
+
+        @media (max-width : 400px) {
+            .left-container-button-area {
+                justify-content: center;
+            }
+        }
+
+        .left-container-button {
+            width: 150px;
+            height: 50px;
+            font-size: 20px;
+            color: white;
+            background-color: #2e75b6;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        .left-container-hidden-like-image {
+            width: 150px;
+            height: 80px;
+            background-image: url("like-yellow-icon.png");
+            background-size: 0% 0%;
+        }
+    </style>
+</head>
+<script>
+    // Region 3 
+    function onPageLoad() {
+        // khai báo các biến
+        var vInput = document.getElementById('input-message');
+        var vHiddenMessage = document.getElementById('text-hidden-text');
+        var vHiddenImage = document.getElementById('image-hidden-image');
+        // Ghi ra console
+        console.log(vInput.id, " ", vInput);
+        console.log(vHiddenMessage.id, " ", vHiddenMessage);
+        console.log(vHiddenImage.id, " ", vHiddenImage)
+    }
+    function onBtnSendClick() {
+        // Sau khi bấm nút
+        console.log(`Send message to me`)
+        // Khai báo các biến message
+        var vMessageInfos = document.getAnimations('input-message');
+        var vMessage = document.getElementById('input-message').value;
+        var vHiddenMessage = document.getElementById('text-hidden-text');
+        // Chuyển value của Message sang Message ẩn
+        vHiddenMessage.innerHTML = vMessage;
+        vHiddenMessage.style = "font-size : 30px; color : blue"
+        // Khai báo hình ảnh ẩn và Hiện lên
+        var vHiddenImage = document.getElementById('image-hidden-image');
+        vHiddenImage.style = "background-size: 100% 100%;"
+    }
+    // ...
+</script>
+
+<body onload="onPageLoad()">
+    <div class="container">
+        <div class="right-container">
+            <!-- Developer image -->
+            <img src="programing.png" alt="">
+        </div>
+        <div class="left-container">
+            <div class="left-container-title">MESSAGE TO ME - A FUTURE DEVELOPER</div>
+            <div class="left-container-paragraph">Lời nhắn gửi cho bạn</div>
+            <div class="left-container-input">
+                <input type="text" id="input-message">
+            </div>
+            <div class="left-container-button-area">
+                <button class="left-container-button" onclick="onBtnSendClick()">Gửi lời nhắn</button>
+            </div>
+            <div class="left-container-hidden-text" id="text-hidden-text"></div>
+            <div class="left-container-hidden-like-image" id="image-hidden-image"></div>
+        </div>
+    </div>
+</body>
+
+</html>

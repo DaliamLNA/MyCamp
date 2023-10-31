@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <title>Get data form and map to object</title>
+</head>
+<script>
+  "use strict";
+  /*** REGION 1 - Global variables - Vùng khai báo biến, hằng số, tham số TOÀN CỤC */
+
+  /*** REGION 2 - Vùng gán / thực thi sự kiện cho các elements */
+
+  /*** REGION 3 - Event handlers - Vùng khai báo các hàm xử lý sự kiện */
+  // Hàm thực hiện khi bấm nút SEND
+  function onButtonSendClick() { 
+    // Sau khi click, ghi lên console
+    console.log(`Bắt đầu Send dữ liệu`);
+    // Khai báo và lấy giá trị của các dữ liệu nhập
+    var vProduct = {maSanPham: "", tenSanPham: "", nhomSanPham: "", soLuongNhap: "", country: "", price: ""}  
+    vProduct.maSanPham = document.getElementById('input-product-code').value;
+    vProduct.tenSanPham = document.getElementById('input-product-name').value;
+    vProduct.nhomSanPham = document.getElementById('select-category').value;
+    vProduct.soLuongNhap = parseInt(document.getElementById('input-inport-number').value);
+    vProduct.country = document.getElementById('select-country').value;
+    vProduct.price = parseInt(document.getElementById('input-import-price').value);
+    // Ghi các object của product ra
+    console.log(vProduct)
+    }  
+  /*** REGION 4 - Common funtions - Vùng khai báo hàm dùng chung trong toàn bộ chương trình*/  
+
+</script>
+
+<body>
+  <div class="container jumbotron p-5 mt-5">
+    <div class="text-center mb-4">
+      <h4>Quản lý sản phẩm</h4>
+    </div> 
+      <div class="row form-group">
+        <label class="col-sm-2 col-form-label" for="input-product-code">Mã sản phẩm</label>
+        <div class="col-sm-4">
+          <input type="text" id="input-product-code" name="productcode" placeholder="Product code .." class="form-control">
+        </div>
+
+        <label class="col-sm-2 col-form-label" for="input-product-name">Tên sản phẩm</label>
+        <div class="col-sm-4">
+          <input type="text" id="input-product-name" name="productname" placeholder="Product Name .." class="form-control">
+        </div>
+      </div>
+      <div class="row form-group">
+        <label class="col-sm-2 col-form-label">Nhóm sản phẩm</label>
+          <div class="col-sm-4">
+          <select id="select-category" class="form-control">
+            <option value="01-dt">Điện tử</option>
+            <option value="02-hgd">Hàng gia dụng</option>
+            <option value="03-dl">Điện lạnh</option>
+          </select>
+        </div>
+        <label class="col-sm-2 col-form-label">Số lượng nhập</label>
+        <div class="col-sm-4">
+          <input type="text" id="input-inport-number" placeholder="Number of products ..." class="form-control">
+        </div>
+        <label class="col-sm-2 col-form-label" style="margin-top: 20px;">Nước sản xuất</label>
+        <div class="col-sm-4" style="margin-top: 20px;">
+          <select id="select-country" class="form-control">
+            <option value="01-USA">USA</option>
+            <option value="02-VietNam">VietNam</option>
+            <option value="03-China">China</option>
+            <option value="04-Australia">Australia</option>
+          </select>
+        </div>
+        <label class="col-sm-2 col-form-label" style="margin-top: 20px;">Giá bán</label>
+        <div class="col-sm-4">
+          <input type="text" id="input-import-price" placeholder="Price ..." class="form-control" style="margin-top: 20px;">
+        </div>
+      </div>
+      <div class="row form-group text-right">
+        <div class="col-sm-12">
+          <button class="btn btn-info px-4" id="btn-send" onclick="onButtonSendClick()"> Send </button>
+        </div>
+      </div> 
+  </div>
+</body>
+
+</html>

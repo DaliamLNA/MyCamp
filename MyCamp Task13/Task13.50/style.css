@@ -1,0 +1,108 @@
+body {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #F5F5F5;
+}
+
+.container {
+    width: 700px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 50px;
+    padding: 30px;
+}
+
+/* Form */
+.title {
+    font-size: 25px;
+    margin-top: 50px;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.firstname label,
+.lastname label,
+.message label {
+    width: 100px;
+}
+
+.firstname input,
+.lastname input {
+    width: 400px;
+    height: 40px;
+    padding-left: 15px;
+}
+
+.message input {
+    width: 400px;
+    height: 120px;
+    padding-left: 15px;
+}
+
+.firstname {
+    margin-top: 40px;
+    width: 550px;
+    justify-content: space-around;
+    display: flex;
+    align-items: center;
+}
+
+.lastname {
+    margin-top: 20px;
+    width: 550px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+}
+
+.message {
+    margin-top: 20px;
+    width: 550px;
+    justify-content: space-around;
+    display: flex;
+    align-items: center;
+
+}
+
+.send-area {
+    margin-top: 20px;
+    width: 530px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.send {
+    padding: 15px;
+    color: white;
+    background-color: limegreen;
+    border: none;
+    border-radius: 5px;
+    font-size: 20px;
+}
+
+/* sponsors */
+.sponsors img {
+    width: 80px;
+    height: auto;
+}
+
+.sponsors {
+    display: flex;
+    align-items: baseline;
+    gap: 35px;
+    margin-top: 40px;
+}
+
+#amazon {
+    width: 70px;
+}
+
+#grab {
+    width: 60px;
+}

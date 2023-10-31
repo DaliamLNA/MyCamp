@@ -1,0 +1,623 @@
+@import url('https://fonts.googleapis.com/css2?family=Jost&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter&family=Jost&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter&family=Jost&family=Kaisei+Decol&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter&family=Italiana&family=Jost&family=Kaisei+Decol&display=swap');
+
+body {
+    width: 100%;
+    height: auto;
+    background-color: #FFF;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+}
+
+@media screen and (max-width : 355px) {
+    body {
+        gap: 2px;
+    }
+}
+
+/* =================================Homepage======================================= */
+.Homepage {
+    display: flex;
+    justify-content: center;
+    background-image: url('Rectangle\ 3.png');
+    width: 1440px;
+    height: 863px;
+}
+
+.Homepage-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.Homepage-name {
+    color: #000;
+    font-family: Jost;
+    font-size: 16px;
+    font-style: italic;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.Homepage-navbar {
+    display: flex;
+    gap: 40px;
+}
+
+.Homepage-navbar p {
+    color: #000;
+    font-family: Inter;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.Homepage-navbar p:hover {
+    color: white;
+    background-color: #9CAB70;
+    padding: 0px 10px 0px 10px;
+    border-radius: 20px;
+    transition: 0.2s linear;
+}
+
+@media screen and (max-width:355px) {
+    .Homepage {
+        width: 100%;
+        height: 125px;
+        background-position-x: -60px;
+        background-position-y: -400px;
+    }
+
+    .Homepage-name {
+        font-size: 15px;
+    }
+
+    .Homepage-logo img {
+        width: 40px;
+        height: 40px;
+    }
+
+    .Homepage-navbar p {
+        font-size: 13px;
+        font-weight: bold;
+    }
+}
+
+/* ===============================AboutUs================================================================================== */
+.AboutUs {
+    width: 1440px;
+    height: 450px;
+    background-color: #9CAB70;
+    display: flex;
+}
+
+.AboutUs-container {
+    display: flex;
+    gap: 200px;
+    align-items: center;
+}
+
+.AboutUs-image {
+    background-image: url('Rectangle\ 4.png');
+    width: 513px;
+    height: 450px;
+    flex-shrink: 0;
+}
+
+.AboutUs-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+
+.AboutUs-title {
+    color: #FFF;
+    font-family: Kaisei Decol;
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.AboutUs-description {
+    width: 662px;
+    color: #FFF;
+    text-align: center;
+    font-family: Kaisei Decol;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+@media screen and (max-width:355px) {
+    .AboutUs {
+        width: 100%;
+        height: 150px;
+        justify-content: space-between;
+    }
+
+    .AboutUs-container {
+        gap: 5px;
+    }
+
+    .AboutUs-image {
+        width: 150px;
+        height: 150px;
+        background-size: 150px 150px;
+    }
+
+    .AboutUs-content {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        margin-left: 30px;
+    }
+
+    .AboutUs-title {
+        font-size: 15px;
+    }
+
+    .AboutUs-description {
+        width: 150px;
+        font-size: 10px;
+    }
+}
+
+/* <!--=========================Product===========================================================--> */
+.Product {
+    width: 1440px;
+    height: 738px;
+    flex-shrink: 0;
+    display: flex;
+    justify-content: center;
+    background-color: #EEE;
+}
+
+.Product-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.Product-title {
+    color: #000;
+    font-family: Kaisei Decol;
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin-top: 60px;
+}
+
+.Product-wall {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 55px;
+    margin-top: 95px;
+}
+
+.Product-items {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.Product-items img {
+    width: 195px;
+    height: 190px;
+    margin-bottom: 15px;
+}
+
+.Product-items img:hover {
+    opacity: 0.8;
+    transition: 1s;
+}
+
+.Product-name {
+    color: #000;
+    font-family: Jost;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+}
+
+.Product-description {
+    width: 274px;
+    height: 143px;
+    flex-shrink: 0;
+    color: #000;
+    text-align: center;
+    font-family: Kaisei Decol;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+@media (max-width : 355px) {
+    .Product {
+        width: 100%;
+        height: 1250px;
+        display: flex;
+        /* flex-wrap: wrap; */
+        flex-direction: column;
+        height: 60%;
+    }
+
+    .Product-title {
+        font-size: 25px;
+        margin-top: 10px;
+    }
+
+    .Product-wall {
+        gap: 5px;
+        margin-top: 50px;
+        flex-wrap: wrap;
+    }
+
+    .Product-items {
+        box-shadow: 0.5px 0.5px 10px #383F26;
+        margin-bottom: 10px;
+    }
+
+    .Product-items img {
+        width: 100px;
+        height: 95px;
+        margin-bottom: 15px;
+    }
+
+    .Product-name {
+        font-size: 15px;
+    }
+
+    .Product-description {
+        font-size: 12px;
+        width: 200px;
+    }
+}
+
+/* <!--=========================Discount===========================================================================--> */
+.Discount {
+    width: 1440px;
+    height: 360px;
+    display: flex;
+    justify-content: center;
+
+}
+
+.Discount-container {
+    display: flex;
+    /* gap: 25px; */
+
+}
+
+.Discount-content {
+    background-color: #9CAB70;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 927px;
+    height: 100%;
+}
+
+.Discount-title {
+    color: #FFF;
+    text-align: center;
+    font-family: Italiana;
+    font-size: 64px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.Discount-description {
+    flex-shrink: 0;
+    color: #FFF;
+    text-align: center;
+    font-family: Jost;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    width: 654px;
+    height: 103px;
+    flex-shrink: 0;
+    margin-top: 15px;
+}
+
+.Discount-contact {
+    margin-top: 40px;
+    width: 227px;
+    height: 57px;
+    border-radius: 20px;
+    border: 2px solid #68763F;
+    background: rgba(255, 255, 255, 0.80);
+    color: #383F26;
+    text-align: center;
+    font-family: Jost;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.Discount-contact:hover {
+    opacity: 0.65;
+    transition: 0.2s;
+}
+
+.Discount-image {
+    width: 488px;
+    height: 100%;
+    background-image: url('Rectangle\ 8.png');
+}
+
+@media screen and (max-width: 355px) {
+    .Discount {
+        width: 100%;
+        height: 500px;
+        background-color: #9CAB70;
+
+    }
+
+    .Discount-container {
+        gap: 10px;
+        align-items: center;
+        width: 100%;
+        flex-direction: column;
+    }
+
+    .Discount-content {
+        width: 100%;
+        gap: 0px;
+    }
+
+    .Discount-image {
+        width: 250px;
+        height: 200px;
+        background-size: 350px 200px;
+        background-position-x: -120px;
+        margin-top: -250px;
+    }
+
+    .Discount-title {
+        font-size: 30px;
+        margin-top: -200px;
+    }
+
+    .Discount-description {
+        font-size: 15px;
+        width: 100%;
+    }
+
+    .Discount-contact {
+        margin-top: -50px;
+    }
+}
+
+/* <!--=========================Contact===========================--> */
+.Contact {
+    width: 1435px;
+    height: 598px;
+    background-image: url('Rectangle\ 10.png');
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 4px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.Contact-container {
+    background-color: #FAFAFA;
+    width: 607px;
+    height: 603px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.Contact-title {
+    color: #000;
+    text-align: center;
+    font-family: Jost;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin-top: 36px;
+}
+
+.Contact-name {
+    width: 495px;
+    height: 56px;
+    flex-shrink: 0;
+    border-radius: 15px;
+    border: 4px solid #9CAB70;
+    background: #FFF;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    margin-top: 37px;
+    padding: 0px 20px 0px 20px;
+    font-family: Jost;
+    font-size: 32px;
+    outline: none;
+}
+
+.Contact-email {
+    width: 495px;
+    height: 56px;
+    flex-shrink: 0;
+    border-radius: 15px;
+    border: 4px solid #9CAB70;
+    background: #FFF;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    margin-top: 34px;
+    font-family: Jost;
+    font-size: 32px;
+    padding: 0px 20px 0px 20px;
+    outline: none;
+}
+
+.Contact-message {
+    width: 495px;
+    height: 95px;
+    border-radius: 20px;
+    border: 4px solid #9CAB70;
+    background: #FFF;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    margin-top: 34px;
+    padding: 0px 20px 40px 20px;
+    font-family: Jost;
+    font-size: 32px;
+    outline: none;
+}
+
+.Contact-send-container {
+    margin-top: 50px;
+    width: 540px;
+    text-align: right;
+}
+
+.Contact-send {
+    border-radius: 15px;
+    border: 4px solid #9CAB70;
+    background: #68763F;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    width: 153px;
+    height: 52px;
+    color: #FFF;
+    text-align: center;
+    font-family: Jost;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.Contact-send:hover {
+    opacity: 0.8;
+    transition: 0.5s linear;
+}
+
+@media screen and (max-width : 355px) {
+    .Contact {
+        width: 100%;
+        height: 500px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .Contact-container {
+        background-color: rgba(0, 0, 0, 0.1);
+        width: 100%;
+    }
+
+    .Contact-title {
+        font-size: 30px;
+        margin-top: 10px;
+    }
+
+    .Contact-name,
+    .Contact-email {
+        width: 250px;
+        height: 35px;
+        font-size: 15px;
+    }
+
+    .Contact-message {
+        width: 250px;
+        height: 60px;
+        font-size: 13px;
+    }
+
+    .Contact-send-container {
+        text-align: center;
+    }
+}
+
+/* <!--=========================Footer===========================--> */
+.Footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: -10px;
+}
+
+.Footer-name {
+    color: #000;
+    font-family: Jost;
+    font-size: 16px;
+    font-style: italic;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.Footer-socialmedias {
+    margin-top: 16px;
+    display: flex;
+    gap: 24px;
+}
+
+.Footer-socialmedias img:hover {
+    background-color: #F5F5F5;
+    border-radius: 200px;
+    width: 30px;
+    height: 30px;
+}
+
+.Footer-navbar {
+    display: flex;
+    gap: 40px;
+}
+
+.Footer-navbar p {
+    color: #9CAB70;
+    font-family: Inter;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.Footer-navbar p:hover {
+    color: grey;
+}
+
+@media screen and (max-width : 355px) {
+    .Footer {
+        margin-top: 20px;
+    }
+
+    .Footer-logo img {
+        width: 40px;
+        height: 40px;
+    }
+
+    .Footer-socialmedias img {
+        width: 27px;
+        height: 27px;
+    }
+
+    .Footer-navbar {
+        gap: 20px;
+    }
+
+    .Footer-navbar p {
+        font-size: 15px;
+    }
+}

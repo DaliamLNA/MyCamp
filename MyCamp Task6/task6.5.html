@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hover blocks</title>
+    <style>
+        * { 
+            font-family: arial;
+            font-weight: bold;
+        }
+        .container {    
+            display:flex;
+        }
+        .container div{    
+            display:flex;
+            width: 350px;
+            height: 100vh;
+            border: 1px solid black;
+            color: black;
+            flex-wrap: wrap;
+            align-content: center;
+            justify-content: center;
+            background-color: rgb(107, 103, 103);
+            background-blend-mode:multiply;
+        }
+        .container div p {
+            color: white;
+            font-size: 40px;
+        }
+        .container div:first-child {    
+            background-image: url("img1/1.jpeg");
+        }
+        .container div:nth-child(2) {    
+            background-image: url("img1/2.jpeg");
+        }
+        .container div:nth-child(3) {     
+            background-image: url("img1/3.jpeg");
+        }
+        .container div:nth-child(4) {    
+            background-image: url("img1/4.jpeg");
+        }
+        .container div:last-child {    
+            background-image: url("img1/5.jpeg");
+        }
+        .container div:hover p {  
+            padding: 10px;
+            color: black;
+            background-color:rgba(112, 116, 116, 0.425);
+            border-radius: 10px;
+        }
+        .container div:hover{
+            filter: brightness(200%);
+            flex-grow: 2;
+            transition: all 0.6s linear;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div><p>ONE</p></div>
+        <div><p>TWO</p></div>
+        <div><p>THREE</p></div>
+        <div><p>FOUR</p></div>
+        <div><p>FIVE</p></div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Thực hành với biến</title>
+</head>
+
+<body>
+    <h3>Bài thực hành với biến trong JavaScript</h3>
+    <p id="p-demo-paragraph">Đoạn văn</p>
+</body>
+
+<script>
+    // Viết code Javascript thực hiện bài tập ở đây
+    // Yc1
+    var string1 = "Đây là cửa hàng Pizza365.";
+    console.log(string1);
+    // Yc2
+    var number1 = 5;
+    number1 = number1 * number1;
+    console.log(number1);
+    // Yc3
+    var string2 = "";
+    string2 = "Xin chào quý khách. " + string1;
+    console.log(string2)
+    // YC4
+    var check = false;
+    var result;
+    if (number1 < 100) {
+        result = true;
+    }
+    else {
+        result = check;
+    }
+    console.log(result);
+    //Yc5
+    var string = document.getElementById("p-demo-paragraph");
+    string.innerHTML = "Hãy mở cửa sổ Console để xem kết quả!";
+    // YC6
+    var number2 = -28;
+    if (number2 < 0) {  
+        console.log("Số phải lớn hơn hoặc bằng 0");
+    }
+    else {  
+        console.log("Số hợp lệ");
+    }
+</script>
+
+</html>
