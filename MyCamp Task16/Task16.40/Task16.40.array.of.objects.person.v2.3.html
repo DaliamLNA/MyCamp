@@ -22,6 +22,11 @@
     /*** REGION 3 - Event handlers - Vùng khai báo các hàm xử lý sự kiện */
     function onPageLoading() {
         // Gọi thử của function getPersonByIndex, ghi object ra console 
+        var vPersonIndex = getPersonByIndex(2);
+        console.log(vPersonIndex);
+        // Gọi thử của function getPersonByCitizenId, ghi object ra console 
+        var vPersonCitizenId = getPersonByCitizenID("G8129");
+        console.log(vPersonCitizenId);
     }
 
     /*** REGION 4 - Common funtions - Vùng khai báo hàm dùng chung trong toàn bộ chương trình*/
@@ -31,6 +36,7 @@
             return null;
         }
         return (vLIST_PERSON[paramIndexPerson]);
+        console.log(vLIST_PERSON[paramIndexPerson]);
     }
 
     // bạn hãy viết function trả lại person theo citizenID 
@@ -50,7 +56,7 @@
             }
         }
         return vPersonObj;
-
+        console.log(vPersonObj);
     }
 
 </script>
