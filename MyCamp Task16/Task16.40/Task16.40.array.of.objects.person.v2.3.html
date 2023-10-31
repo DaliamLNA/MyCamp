@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Find object in array</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -17,7 +18,7 @@
     ];
 
     /*** REGION 2 - Vùng gán / thực thi hàm xử lý sự kiện cho các elements */
-   
+
     /*** REGION 3 - Event handlers - Vùng khai báo các hàm xử lý sự kiện */
     function onPageLoading() {
         // Gọi thử của function getPersonByIndex, ghi object ra console
@@ -29,7 +30,10 @@
     /*** REGION 4 - Common funtions - Vùng khai báo hàm dùng chung trong toàn bộ chương trình*/
     // đây là 01 function đã trả lại person bởi index.
     function getPersonByIndex(paramIndexPerson) {
-
+        if (paramIndexPerson < 0 || paramIndexPerson > vLIST_PERSON - 1) {
+            return null;
+        }
+        return(vLIST_PERSON[paramIndexPerson]);
     }
 
     // bạn hãy viết function trả lại person theo citizenID 
