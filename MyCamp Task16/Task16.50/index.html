@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Show Courses to UI</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <script>
     "use strict";
@@ -79,17 +80,151 @@
             level: "Advanced"
         }
     ];
-        
+
     /*** REGION 2 - Vùng gán / thực thi hàm xử lý sự kiện cho các elements */
 
     /*** REGION 3 - Event handlers - Vùng khai báo các hàm xử lý sự kiện */
-
+    function onPageLoad() {
+        loadCourseList();
+    }
+    function getCourseByCourseCode(paramCourseCode) {
+        // Giá trị ban đầu
+        var vCourse = null;
+        var vCourseIndex = 0;
+        var vCourseFound = false;
+        while (vCourseFound == false && vCourseIndex < gListCourses.length) {
+            if (gListCourses[vCourseIndex].courseCode == paramCourseCode) {
+                vCourseFound = true;
+                vCourse = gListCourses[vCourseIndex];
+            }
+            else {
+                vCourseIndex++;
+            }
+        }
+        return vCourse;
+    }
+    function onBtnclickFindCourseByCode() {
+        // Lấy giá trị nhập
+        var vCourseFound = null;
+        var vCourseCourseInput = document.getElementById('inp-id');
+        var vCourseCode = vCourseCourseInput.value;
+        // nếu ko nhập
+        if (vCourseCode == "") {
+            alert("Hãy Nhập Id của Course để tìm kiếm!")
+        }
+        else {
+            var vCourseFound = getCourseByCourseCode(vCourseCode);
+            console.log(vCourseFound);
+            if (vCourseFound != null) {
+                // != là khác        Tìm thấy
+                var vCourseList = document.getElementById("list-courses");
+                // Xóa đi khi tìm thấy
+                vCourseList.innerHTML = "";
+                // Hiện course đang cần tìm
+                vCourseList = vCourseList.innerHTML += `
+            <div class="course">
+                <div class="logo">
+                    <img src="${vCourseFound.courseImage}" alt="">
+                </div>
+                <div class="content">
+                    <div class="title">${vCourseFound.courseName}</div>
+                    <div class="author">${vCourseFound.teacherName}</div>
+                    <div class="description">${vCourseFound.courseDesc}</div>
+                </div>
+                <div class="info">
+                    <div class="info-content">
+                        <img src="images/Clock Icon.png" alt=""> <strong class="number">${vCourseFound.duration}</strong> hours
+                    </div>
+                    <div class="info-content">
+                        <img src="images/Lesson Icon.png" alt=""> <strong class="number">${vCourseFound.lessons}</strong> lessons
+                    </div>
+                    <div class="info-content">
+                        <img src="images/Lesson Icon.png" alt=""> <strong class="number">${vCourseFound.level}</strong> levels
+                    </div>
+                </div>
+            </div>
+            `
+            }
+            else {
+                alert("Course Code không tồn tại")
+            }
+        }
+    }
     /*** REGION 4 - Common funtions - Vùng khai báo hàm dùng chung trong toàn bộ chương trình */
-    
+    function getCourseByIndex(paramIndexOfCourse) {
+        if (paramIndexOfCourse < 0 || paramIndexOfCourse > gListCourses.length - 1) {   // || có nghĩa là VÀ 
+            return null; // khi ấy trả lại giá trị null
+        }
+        return gListCourses[paramIndexOfCourse];
+    }
+    function loadCourseList() {
+        var vCourseList = document.getElementById("list-courses");
+
+        for (var bI = 1; bI < gListCourses.length + 1; bI++) {
+            // += là thêm vào
+            vCourseList.innerHTML += `
+            <div class="course">
+                <div class="logo">
+                    <img src="${gListCourses[bI].courseImage}" alt="">
+                </div>
+                <div class="content">
+                    <div class="title">${gListCourses[bI].courseName}</div>
+                    <div class="author">${gListCourses[bI].teacherName}</div>
+                    <div class="description">${gListCourses[bI].courseDesc}</div>
+                </div>
+                <div class="info">
+                    <div class="info-content">
+                        <img src="images/Clock Icon.png" alt=""> <strong class="number">${gListCourses[bI].duration}</strong> hours
+                    </div>
+                    <div class="info-content">
+                        <img src="images/Lesson Icon.png" alt=""> <strong class="number">${gListCourses[bI].lessons}</strong> lessons
+                    </div>
+                    <div class="info-content">
+                        <img src="images/Lesson Icon.png" alt=""> <strong class="number">${gListCourses[bI].level}</strong> levels
+                    </div>
+                </div>
+            </div>`;
+        }
+    }
 </script>
 
-<body>
-    
+<body onload="onPageLoad()">
+    <div class="container">
+        <div class="finder-container">
+            <div class="finder-title">DANH SÁCH KHÓA HỌC</div>
+            <div class="finder-main">
+                <label for="course-finder" class="label-finder">Nhập mã khóa học</label>
+                <input type="text" class="course-id-input" id="inp-id"
+                    placeholder="Nhập mã khóa học bạn cần tìm kiếm ...">
+                <button class="btn-find" onclick="onBtnclickFindCourseByCode()">Tìm kiếm</button>
+            </div>
+        </div>
+        <div class="list-courses" id="list-courses">
+            <div class="course">
+                <div class="logo">
+                    <img src="images/iconfinder_React.js_logo_1174949.png" alt="">
+                </div>
+                <div class="content">
+                    <div class="title">React - The Complete Guide </div>
+                    <div class="author">by Maximilian Schwarzmüller</div>
+                    <div class="description">Dive in and learn React 16.8 from scratch! Learn Reactjs, Hooks, Redux,
+                        React
+                        Routing, Animations, Next.js and way more!</div>
+                </div>
+                <div class="info">
+                    <div class="info-content">
+                        <img src="images/Clock Icon.png" alt=""> <strong class="number">45</strong> hours
+                    </div>
+                    <div class="info-content">
+                        <img src="images/Lesson Icon.png" alt=""> <strong class="number">146</strong> lessons
+                    </div>
+                    <div class="info-content">
+                        <img src="images/Lesson Icon.png" alt=""> <strong class="number">All</strong> levels
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>
