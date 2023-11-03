@@ -15,7 +15,10 @@
     <img src="images/flip-coin/placeholder.giucho.png" id="img-new-coin-display" width="200px">
     <hr>
     <h1 id="h1-oan-tu-ti"> Game oẳn tù tì - Bạn hãy làm </h1>
-
+    <button onclick="onClickRockPaperScissors()"> Chơi ngay </button>
+    <hr>
+    <img src="images/oantuti/placeholder.oan.tu.ti.png" id="img-rockpaperscissors-display" width="200px">
+    <hr>
 </body>
 <script>
     "use strict"
@@ -38,15 +41,38 @@
             vImgCoin.src = "images/flip-coin/tail.png";
         }
     }
-
+    function onClickRockPaperScissors() {   
+        var vSoMoi = soBatKyTu1Den3();
+        console.log("Số mới là:" + vSoMoi);
+        var vImg = document.getElementById('img-rockpaperscissors-display');
+        switch(vSoMoi) {  
+            case 1 : 
+            vSoMoi === 1;
+            vImg.src = "images/oantuti/bua_green.png";
+            break;
+            case 2 :
+            vSoMoi === 2;
+            vImg.src = "images/oantuti/giay_green.png";
+            break;
+            case 3 : 
+            vSoMoi === 3;
+            vImg.src = "images/oantuti/keo_green.png";
+            break;
+        }
+    }
     /*** REGION 4 - Common funtions - Vùng khai báo hàm dùng chung trong toàn bộ chương trình*/
     // hàm sinh số ngẫu nhiên từ 1 đến 2
     function soBatKyTu1Den2() {
         var vSoBatKyTu1Den2 = Math.floor(Math.random() * 2 + 1)
         console.log("Số bất kỳ từ 1 đến 2 là: " + vSoBatKyTu1Den2);
         return vSoBatKyTu1Den2;
+        }
+    function soBatKyTu1Den3() { 
+        var vSoBatKyTu1Den3 = Math.floor(Math.random() * 3 + 1 );
+        console.log("Số bất kỳ từ 1 dến 3 là :" + vSoBatKyTu1Den3);
+        return vSoBatKyTu1Den3;
     }
-
+    
 </script>
 
 </html>
