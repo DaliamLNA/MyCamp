@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Find object in array</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<script>
+    "use strict";
+    /*** REGION 1 - Global variables - Vùng khai báo biến, hằng số, tham số TOÀN CỤC */
+    // mảng chứa danh sách các đối tượng person
+    const vLIST_PERSON = [
+        { "firstName": "John", "lastName": "Doe", "age": 39, "citizenID": "A9127" },
+        { "firstName": "John", "lastName": "Smith", "age": 24, "citizenID": "B9625" },
+        { "firstName": "Lara", "lastName": "Croft", "age": 31, "citizenID": "D9142" },
+        { "firstName": "Fernadi", "lastName": "Miguel", "age": 18, "citizenID": "E9442" },
+        { "firstName": "Lee", "lastName": "Matheus", "age": 81, "citizenID": "G8129" },
+    ];
+
+    /*** REGION 2 - Vùng gán / thực thi hàm xử lý sự kiện cho các elements */
+
+    /*** REGION 3 - Event handlers - Vùng khai báo các hàm xử lý sự kiện */
+    function onPageLoading() {
+        // Gọi thử của function getPersonByIndex, ghi object ra console 
+        var vPersonIndex = getPersonByIndex(2);
+        console.log(vPersonIndex);
+        // Gọi thử của function getPersonByCitizenId, ghi object ra console 
+        var vPersonCitizenId = getPersonByCitizenID("G8129");
+        console.log(vPersonCitizenId);
+    }
+
+    /*** REGION 4 - Common funtions - Vùng khai báo hàm dùng chung trong toàn bộ chương trình*/
+    // đây là 01 function đã trả lại person bởi index.
+    function getPersonByIndex(paramIndexPerson) {
+        if (paramIndexPerson < 0 || paramIndexPerson > vLIST_PERSON.length - 1) {
+            return null;
+        }
+        return (vLIST_PERSON[paramIndexPerson]);
+        console.log(vLIST_PERSON[paramIndexPerson]);
+    }
+
+    // bạn hãy viết function trả lại person theo citizenID 
+    function getPersonByCitizenID(paramCitizenID) {
+        // Giá trị ban đầu
+        var vPersonObj = null;
+        var vPersonIndex = 0;
+        var vPersonFound = false;
+        //  
+        while (vPersonFound == false && vPersonIndex < vLIST_PERSON.length) {
+            if (vLIST_PERSON[vPersonIndex].citizenID == paramCitizenID) {
+                vPersonFound = true;
+                vPersonObj = vLIST_PERSON[vPersonIndex];
+            }
+            else {
+                vPersonIndex++;
+            }
+        }
+        return vPersonObj;
+        console.log(vPersonObj);
+    }
+
+</script>
+
+<body onload="onPageLoading()" class="bg bg-transparent">
+    <div class="jumbotron">
+        <h1> Test Page for Devcamp Javascrip Tasks </h1>
+        <p> Press F5 to run code. Don't forget to Save your code before running. (Ctrl+S). </p>
+    </div>
+</body>
+
+</html>
