@@ -22,17 +22,61 @@
 
     /*** REGION 3 - Event handlers - Vùng khai báo các hàm xử lý sự kiện */
     function onPageLoading() {
-        console.log(`%c Hello `, `color : red; font-size : 20px`);
+        console.log(`%cHello `, `color : red; font-size : 20px`);
     }
-    function onBtnClickFindCitizenById() { }
-    function onBtnClickListAllCitizen() { }
-    function onBtnClickAddCitizen() { }
-    
-    
-    
+    function onBtnClickFindCitizenById(paramCitizenID) {
+        paramCitizenID = document.getElementById('inp-citizenID').value; // Lấy giá trị nhập citizen ID
+        var vPersonObj; // khai báo Biến vPersonObj
+        vPersonObj = getPersonByCitizenID(paramCitizenID); // Gọi hàm chung tìm giá trị từ paramnumber
+        if (vPersonObj == null) {
+            console.log(`%cPerson not found`, `color : red; font-size : 15px `)
+            alert(`Person not found`)
+        }
+        else {
+            console.log(`%cPerson Found ---------------------
+First name : ${vPersonObj.firstName}
+Last name : ${vPersonObj.lastName}
+Age : ${vPersonObj.age}
+Citizen ID : ${vPersonObj.citizenID}
+            `,
+                `font-size : 15px`
+            )
+        }
+    };
+    function onBtnClickListAllCitizen() {
+        var vPerson;
+        for (var bI = 0; bI < vLIST_PERSON.length; bI++) { // Duyệt qua từng phần tử con của array person list
+            vPerson = vLIST_PERSON[bI] // Gán giá trị của từng phần tử con và ghi ra console, tiếp tục tới hết
+            console.log(`%c
+First name : ${vPerson.firstName}
+Last name : ${vPerson.lastName}
+Age : ${vPerson.age}
+Citizen ID : ${vPerson.citizenID}
+            `,
+                `font-size : 15px`)
+        }
+    }
+    function onBtnClickAddCitizen() {
+        // Khai báo 4 biến, lấy giá trị từ các ô input lần lượt
+        var vFirstname = document.getElementById('inp-firstname').value;
+        var vLastname = document.getElementById('inp-lastname').value;
+        var vAge = parseInt(document.getElementById('inp-age').value);
+        var vCitizenID = document.getElementById('inp-citizenID').value;
+        // Nếu không nhập gì hết
+        if (vFirstname == "" || vLastname == "" || vAge == "" || vCitizenID == "") {
+            console.log(`%cCan't Add Person`, `color : red`)
+            alert("Can't add person")
+        }
+        else {
+            vLIST_PERSON.push({ "firstName": `${vFirstname}`, "lastName": `${vLastname}`, "age": `${vAge}`, "citizenID": `${vCitizenID}` })
+        }
+    }
+
+
+
     /*** REGION 4 - Common functions - Vùng khai báo hàm dùng chung trong toàn bộ chương trình*/
-    
-    
+
+
     // đây là 01 function đã trả lại person bởi index.
     function getPersonByIndex(paramIndexPerson) {
         if (paramIndexPerson < 0 || paramIndexPerson > vLIST_PERSON.length - 1) {
@@ -59,7 +103,6 @@
             }
         }
         return vPersonObj;
-        console.log(vPersonObj);
     }
 
 </script>
@@ -70,19 +113,19 @@
         <div class="form-all-input">
             <div class="form-input-list">
                 <label class="form-label">First name</label>
-                <input type="text" placeholder="First name...">
+                <input type="text" placeholder="First name..." id="inp-firstname">
             </div>
             <div class="form-input-list">
                 <label class="form-label">Last name</label>
-                <input type="text" placeholder="Last name...">
+                <input type="text" placeholder="Last name..." id="inp-lastname">
             </div>
             <div class="form-input-list">
                 <label class="form-label">Age</label>
-                <input type="number" placeholder="Age...">
+                <input type="number" placeholder="Age..." id="inp-age">
             </div>
             <div class="form-input-list">
                 <label class="form-label">Citizen ID</label>
-                <input type="text" placeholder="Citizen ID...">
+                <input type="text" placeholder="Citizen ID..." id="inp-citizenID">
             </div>
         </div>
         <div class="form-all-button">
