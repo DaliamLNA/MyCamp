@@ -1,0 +1,117 @@
+<html>
+<header>
+    <title> Task 731.20: kỹ năng căn bản - tag - Button </title>
+
+    <style>
+        .bg-red {
+            background-color: red;
+            color: yellow;
+            border: 0;
+            outline: none;
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+        }
+
+        .bg-green {
+            background-color: green;
+            color: white;
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+            border: 0;
+            outline: none;
+        }
+
+        hr {
+            margin-top: 1rem;
+        }
+    </style>
+</header>
+
+<body>
+    <h1> Kỹ năng xử lý tag Button - phần tử nút </h1>
+    <div class="sample">
+        <input type="button" value="Input Button" id="input-button"> <!-- loại nút dùng input tag-->
+        <button id="tag-button">Tag Button</button> <!-- loại nút dùng button tag, devcamp hay dùng loại này-->
+
+        <h2>Hãy ấn thử các nút dưới đây - đây là 03 thao tác mẫu với 2 nút ở trên </h2>
+        <button onclick="onBtnTruyVanPhanTuButtonClick()">Truy vấn phần tử Button</button>
+        <button onclick="onBtnDoiChuPhanTuButtonClick()">Đổi chữ phần tử Button</button>
+        <button onclick="onBtnDoiMauBangClassPhanTuButtonClick()">Đổi màu bằng class phần tử Button</button>
+    </div>
+    <hr>
+    <div>
+        <h2>Hãy thêm 03 thao tác như vậy với 02 nút sau </h2>
+        <input type="button" value="Input Button Exercise" id="input-button-exercise">
+        <button id="tag-button-exercise">Tag Button Exercise</button>
+        <br>
+        <br>
+        <br>
+        <button onclick="onBtnTruyVanPhanTuExerciseButtonClick()">Truy vấn phần tử Button</button>
+        <button onclick="onBtnDoiChuPhanTuExerciseButtonClick()">Đổi chữ phần tử Button</button>
+        <button onclick="onBtnDoiMauBangClassPhanTuExerciseButtonClick()">Đổi màu bằng class phần tử Button</button>
+    </div>
+
+</body>
+<script>
+    // Truy vấn phần tử button và đọc Value (Title) Phần tử Button
+    function onBtnTruyVanPhanTuButtonClick() {
+        var vInputButton = document.getElementById("input-button");
+        var vTagButton = document.getElementById("tag-button");
+        console.log("Phần tử Button Input :....");
+        console.log(vInputButton);
+        console.log("Value input-button = " + vInputButton.value);
+        console.log("Phần tử Button Tag :....");
+        console.log(vTagButton);
+        console.log("Value tag-button = " + vTagButton.innerHTML);
+    }
+
+    // Đổi nội dung chữ phần tử Button
+    function onBtnDoiChuPhanTuButtonClick() {
+        var vInputButton = document.getElementById("input-button");
+        var vTagButton = document.getElementById("tag-button");
+        console.log("Đổi chữ phần tử Button Input :....");
+        vInputButton.value = "Button Input v2.0";
+        console.log("Đổi chữ Phần tử Button Tag :....");
+        vTagButton.innerHTML = "Button Tag v2.0";
+    }
+
+    // Đổi màu bằng Class phần tử Button
+    function onBtnDoiMauBangClassPhanTuButtonClick() {
+        var vInputButton = document.getElementById("input-button");
+        var vTagButton = document.getElementById("tag-button");
+        console.log("Đổi màu bằng class phần tử Button Input :....");
+        vInputButton.className = "bg-red";
+        console.log("Đổi màu bằng class  Phần tử Button Tag :....");
+        vTagButton.className = "bg-green";
+    }
+
+    // BÀI LÀM
+    function onBtnTruyVanPhanTuExerciseButtonClick() {
+        var vInputButtonExercise = document.getElementById('input-button-exercise');
+        var vTagButtonExercise = document.getElementById('tag-button-exercise');
+        console.log("Phần tử Exercise Button Input :....");
+        console.log(vInputButtonExercise);
+        console.log("Value exercise-input-button = " + vInputButtonExercise.value);
+        console.log("Phần tử Button Exercise Tag :....");
+        console.log(vTagButtonExercise);
+        console.log("Value exercise-tag-button = " + vTagButtonExercise.innerHTML);
+    }
+    function onBtnDoiChuPhanTuExerciseButtonClick() {
+        var vInputButtonExercise = document.getElementById('input-button-exercise');
+        var vTagButtonExercise = document.getElementById('tag-button-exercise');
+        console.log("Đổi chữ phần tử Button Input :....");
+        vInputButtonExercise.value = "Input Button Exercise v2"
+        console.log("Đổi chữ Phần tử Button Tag :....");
+        vTagButtonExercise.innerHTML = "Tag Button Exercise v2"
+    }
+    function onBtnDoiMauBangClassPhanTuExerciseButtonClick() {
+        var vInputButtonExercise = document.getElementById('input-button-exercise');
+        var vTagButtonExercise = document.getElementById('tag-button-exercise');
+        console.log(`doi mau input bang class`);
+        vInputButtonExercise.className = "bg-red";
+        console.log(`doi mau tag bang class`);
+        vTagButtonExercise.classList = "bg-green";
+    }
+</script>
+
+</html>
