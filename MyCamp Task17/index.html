@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tung xúc xắc</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="big-image"><img src="people-playing-casino.jpg" alt=""></div>
+    </div>
+    <h1 class="title">Chào mừng đến với Lucky Casino</h1>
+    <img src="dice.png" alt="" class="img-dice" id="img-dice" style="width: 140px; height: 140px"> <br>
+    <button id="btn-dice" style="width: 100px; height: 50px;" onclick="onDicePlayClick()">Ném</button>
+    <h2 id="text-ketqua"></h2>
+</body>
+<script>
+    "use strict";
+    /*** REGION 1 - Global variables - Vùng khai báo biến, hằng số, tham số TOÀN CỤC */
+    var gDice = document.getElementById('img-dice');
+    var gCompliment = document.getElementById('text-ketqua')
+    /*** REGION 2 - Vang gán / talc thi hàm xử lý sự kiện cho các elements */
+    /*** REGION 3 - Event handlers - Vùng khai báo các hàm xử lý sự kiện */
+    function onDicePlayClick() {
+        console.log("Tung xúc xắc");
+        var vMatConLac = getRandomNumber();
+        switch (vMatConLac) {
+            case 1: vMatConLac === 1;
+                gDice.src = "1.png"
+                gCompliment.innerHTML = "Cảm ơn bạn. Hãy cố gắng lần sau!"
+                gCompliment.style.color = "orange"
+                break;
+            case 2: vMatConLac === 2;
+                gDice.src = "2.png"
+                gCompliment.innerHTML = "Cảm ơn bạn. Hãy cố gắng lần sau!"
+                gCompliment.style.color = "orange"
+                break;
+            case 3: vMatConLac === 3;
+                gDice.src = "3.png"
+                gCompliment.innerHTML = "Cảm ơn bạn. Hãy cố gắng lần sau!"
+                gCompliment.style.color = "orange"
+                break;
+            case 4: vMatConLac === 4;
+                gDice.src = "4.png"
+                gCompliment.innerHTML = "Chúc mừng bạn. Hãy chơi ván nữa!"
+                gCompliment.style.color = "purple"
+                break;
+            case 5: vMatConLac === 5;
+                gDice.src = "5.png"
+                gCompliment.innerHTML = "Chúc mừng bạn. Hãy chơi ván nữa!"
+                gCompliment.style.color = "purple"
+                break;
+            case 6: vMatConLac === 6;
+                gDice.src = "6.png"
+                gCompliment.innerHTML = "Chúc mừng bạn. Hãy chơi ván nữa!"
+                gCompliment.style.color = "purple"
+                break;
+        }
+    }
+    /*** REGION 4 - Common functions - Vùng khai báo hàm dùng chung trong toàn bộ chương trình*/
+    function getRandomNumber() {
+        var vNumber = Math.floor((Math.random() * 6) + 1);
+        return vNumber;
+    }
+</script>
+
+</html>
