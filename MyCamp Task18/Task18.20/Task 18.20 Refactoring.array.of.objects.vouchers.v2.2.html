@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Refactorin theo Coding Convention</title>
+</head>
+
+<body class="bg bg-light">
+    <div class="container jumbotron">
+        <h1> Test Page for Devcamp Javascrip Tasks </h1>
+        <p> Press F5 to run code. Don't forget to Save your code before running. (Ctrl+S). </p>
+    </div>
+</body>
+<script>
+    "use strict";
+    /*** REGION 1 - Global variables - Vùng khai báo biến, hằng số, tham số TOÀN CỤC */
+
+    /*** REGION 2 - Vùng gán / thực thi sự kiện cho các elements */
+
+    /*** REGION 3 - Event handlers - Vùng khai báo các hàm xử lý sự kiện */
+
+
+    /*** REGION 4 - Common funtions - Vùng khai báo hàm dùng chung trong toàn bộ chương trình*/
+
+    // vouchersdb: database of vouchers
+    // voucherid: vehicle identification number
+    const gVOUCHER_DB = [
+        { campaign: "NewYear2021", percentagediscount: 10, voucherid: "ABC10X" },
+        { campaign: "CovidSupport", percentagediscount: 20, voucherid: "DNE20N" },
+        { campaign: "NewYear2021", percentagediscount: 20, voucherid: "ABC20D" },
+        { campaign: "CovidSupport", percentagediscount: 30, voucherid: "DNE30E" },
+        { campaign: "CovidSupport", percentagediscount: 50, voucherid: "DNE50M" }
+    ];
+
+    // return a voucher in the given index
+    function getVoucherByIndex(indexOfVoucher) {
+        "use strict";
+        //if the input index not in the invalid range (index đưa vào không có trong array voucherdb)
+        if (indexOfVoucher < 0 || indexOfVoucher > gVOUCHER_DB.length - 1) { return null; }
+        return gVOUCHER_DB[indexOfVoucher];
+    }
+    // bạn hãy tham khảo code để test GetVoucherByIndexs
+    var vVoucher = getVoucherByIndex(3);
+    console.log(vVoucher)
+
+    
+    function getVoucherByVoucherId(paramVoucherId) {
+        var vIndex = 0; // ban đầu
+        var vVoucherFound = false; // ban đầu
+        var vVoucherObj = null; // ban đầu
+        while (vVoucherFound == false && vIndex < gVOUCHER_DB.length) { // khi chưa tìm thấy voucher và index voucher < độ dài của array voucher
+            if (gVOUCHER_DB[vIndex].voucherid == paramVoucherId) { // nếu tìm thấy
+                vVoucherFound = true;
+                vVoucherObj = gVOUCHER_DB[vIndex];
+                return vVoucherObj;
+            }
+            else { // nếu k tìm thấy thì tăng index
+                vIndex++;
+            }
+        }
+    }
+    //đây là code chay thử của function getvoucherByvoucherid
+    // ban hãy viết ra console.log 1 số đặc tính
+    console.log(getVoucherByVoucherId("DNE20N"));
+
+</script>
+
+</html>
