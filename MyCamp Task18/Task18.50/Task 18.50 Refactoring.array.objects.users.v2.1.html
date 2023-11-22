@@ -23,82 +23,132 @@
 
     /*** REGION 3 - Event handlers - Vùng khai báo các hàm xử lý sự kiện */
     // mảng chứa danh sách các đối tượng users
-    const listusers = [
-        { userCode: "100-lelah", userFullName: "Lelah Nichols", userAddress: "Troy, MI" }, 
+    const gLIST_USERS = [
+        { userCode: "100-lelah", userFullName: "Lelah Nichols", userAddress: "Troy, MI" },
         { userCode: "110-jesus", userFullName: "Jesus Weiss", userAddress: "Fort Worth, TX" },
         { userCode: "120-annie", userFullName: "Annie Rice", userAddress: "Austin, TX" },
         { userCode: "130-robert", userFullName: "Robert Brower", userAddress: "Cincinnati, OH" },
         { userCode: "140-amy", userFullName: "Amy Campbell", userAddress: "Warrior, AL" },
-        {userCode: "150-anthony", userFullName: "Anthony S. Morin", userAddress: "Lyndhurst, NJ" }
+        { userCode: "150-anthony", userFullName: "Anthony S. Morin", userAddress: "Lyndhurst, NJ" }
     ];
 
     /*** REGION 4 - Common funtions - Vùng khai báo hàm dùng chung trong toàn bộ chương trình*/
 
     // return a user obj in the given index
-    function GetuserbyIndex(indexofuser) {
+    function getUserByIndex(indexofuser) {
+
         //if the input index not in the invalid range
-        if (indexofuser < 0 || indexofuser > listusers.length - 1) { return null; }
-        return listusers[indexofuser];
+        if (indexofuser < 0 || indexofuser > gLIST_USERS.length - 1) { return null; }
+        return gLIST_USERS[indexofuser];
     }
-// bạn hãy tham khảo code để test GetuserbyIndex
-var user1 = GetuserbyIndex(2);
-console.log(user1.userCode);
-console.log(user1.userFullName);
-console.log(user1.userAddress);
+    // bạn hãy tham khảo code để test GetuserbyIndex
+    var vUser2 = getUserByIndex(2);
+    console.log(vUser2.userCode);
+    console.log(vUser2.userFullName);
+    console.log(vUser2.userAddress);
 
     // hàm tìm kiếm đối tượng user theo usercode. hãy hoàn thiện
-    function get_user_by_user_code(inputUsercode) {
-        var vuserobj = null;
-
-        return vuserobj;
+    function getUserByUserCode(paramUserCode) {
+        var vUserObj = null;
+        var vUserIndex = 0;
+        var vUserFound = false;
+        while (vUserFound == false && vUserIndex < gLIST_USERS.length) {
+            if (gLIST_USERS[vUserIndex].userCode == paramUserCode) {
+                vUserFound = true;
+                vUserObj = gLIST_USERS[vUserIndex];
+            }
+            else {
+                vUserIndex++;
+            }
+        }
+        return vUserObj;
     }
 
     //đây là code chay thử của function get_user_by_user_code
     // ban hãy viết ra console.log 1 số đặc tính
-    console.log(get_user_by_user_code("100-lelah"));
-
+    var vUser2 = getUserByUserCode("100-lelah");
+    console.log("----------------")
+    console.log(vUser2.userCode);
+    console.log(vUser2.userFullName);
+    console.log(vUser2.userAddress);
     // các vấn bạn thấy trong code là 
     // if-else bị lồng quá nhiều
     // nhiều return
     // tab lùi ra vào không hợp lý
     // một số vấn đề đặt tên
-    function GetPresentByDice(input_dice) {
-        if (input_dice == 1) {
-            return "voucher 5%";
+    function getPresentByDice(paramDice) {
+        var vPresent = [
+            "voucher 5%",
+            "voucher 15%",
+            "voucher 20%",
+            "voucher 30%",
+            "voucher 40%",
+            "voucher 100%",
+            "no present found"
+        ]
+        var vPresentFound = "no present found"
+        switch (paramDice) {
+            case 1: paramDice == 1;
+                vPresentFound = vPresent[0];
+                break;
+            case 2: paramDice == 2;
+                vPresentFound = vPresent[1];
+                break;
+            case 3: paramDice == 3;
+                vPresentFound = vPresent[2];
+                break;
+            case 4: paramDice == 4;
+                vPresentFound = vPresent[3];
+                break;
+            case 5: paramDice == 5;
+                vPresentFound = vPresent[4];
+                break;
+            case 6: paramDice == 6;
+                vPresentFound = vPresent[5];
+                break;
         }
-        else {
-            if (input_dice == 2) {
-                return "voucher 15%";
-            }
-            else {
-                if (input_dice == 3) {
-                    return "voucher 20%"
-                }
-                else {
-                    if (input_dice == 4) {
-                        return "voucher 30%";
-                    }
-                    else {
-                        if (input_dice == 5) {
-                            return "voucher 40%"
-                        }
-                        else {
-                            if (input_dice == 6) {
-                                return "voucher 100%";
-                            }
-                            else {
-                                return "no present founnd";
-                            }
-                        }
-                    }
-                }
-            }
-        }
+        return vPresentFound;
     }
 
+
+
+
+    //     if (paramDice == 1) {
+    //         return "voucher 5%";
+    //     }
+    //     else {
+    //         if (paramDice == 2) {
+    //             return "voucher 15%";
+    //         }
+    //         else {
+    //             if (paramDice == 3) {
+    //                 return "voucher 20%"
+    //             }
+    //             else {
+    //                 if (paramDice == 4) {
+    //                     return "voucher 30%";
+    //                 }
+    //                 else {
+    //                     if (paramDice == 5) {
+    //                         return "voucher 40%"
+    //                     }
+    //                     else {
+    //                         if (paramDice == 6) {
+    //                             return "voucher 100%";
+    //                         }
+    //                         else {
+    //                             return "no present founnd";
+    //                         }
+    //                     }
+    //                 }
+    //             }
+    //         }
+    //     }
+
     // code test thử hàm GetPresentByDice()
-    var myPresent = GetPresentByDice(4);
-    console.log(myPresent);
+    // var myPresent = getPresentByDice(4);
+    // console.log("----------------")
+    // console.log(myPresent);
 
 </script>
 
