@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -31,6 +32,21 @@
       writeToHTMLLog("Số điện thoại điền vào là: " + vPhoneNumber);
     }
   }
+  //======================================================================================================================================
+  function onCheckEmailClick() {
+    var vEmailInput = document.getElementById('input-email'); // Truy xuất phần tử input của email
+    var vEmail = vEmailInput.value.trim(); // đọc text 
+
+    // kiểm tra xem có đúng định dạng không
+    if (checkEmail(vEmail) == false) {
+      writeToHTMLLog(vEmail + " --- Email vừa nhập không đúng định dạng")
+    }
+    else {
+      writeToHTMLLog("Email đã nhập là " + vEmail)
+    }
+  }
+
+
 
   // hàm thực thi khi ấn clear log
   function onClearHTMLLogClick() {
@@ -73,6 +89,17 @@
     return true;
   }
 
+  function checkEmail(paramEmail) {
+    if (paramEmail.includes('@') == false) {
+      return false;
+    }
+    if (paramEmail.includes('.') == false) {
+      return false;
+    }
+    return true;
+  }
+
+
 </script>
 
 <body>
@@ -90,10 +117,11 @@
     <hr>
     <label> email: (ví dụ hoant10@gmail.com) </label>
     <div class="form-group">
-      <input class="form-control w-75" type="text" placeholder="Email ...">
+      <input class="form-control w-75" type="text" placeholder="Email ..." id="input-email">
     </div>
     <div class="form-group">
-      <button class="btn btn-success w-75">Kiểm tra Email !</button> <!-- bạn phải viết code cho nút này -->
+      <button class="btn btn-success w-75" onclick="onCheckEmailClick()">Kiểm tra Email !</button>
+      <!-- bạn phải viết code cho nút này -->
     </div>
     <hr>
     <button class="btn btn-warning w-75" onclick="onClearHTMLLogClick()">Clear HTML Log !</button>
