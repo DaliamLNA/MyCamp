@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <title>3 bước xử lý sự kiện - get subject infor</title>
+</head>
+
+<body>
+  <!-- Bắt đầu vùng form màu xám -->
+  <div class="container jumbotron p-4 my-3">
+    <div class="row form-group">
+      <label id="label-ma-mon" class="col-md-2 col-form-label">Mã môn học <span class="text-danger">(*)</span></label>
+      <div class="col-md-4">
+        <input type="text" class="form-control" placeholder="Nhập mã môn ..." id="input-ma-mon">
+      </div>
+    </div>
+    <div class="row form-group">
+      <label id="label-ten-mon" class="col-md-2 col-form-label">Tên môn <span class="text-danger">(*)</span></label>
+      <div class="col-md-4">
+        <input type="text" class="form-control" placeholder="Nhập tên môn ..." id="input-ten-mon">
+      </div>
+    </div>
+    <div class="row form-group">
+      <label id="label-so-tin-chi" class="col-md-2 col-form-label">Số tín chỉ <span
+          class="text-danger">(*)</span></label>
+      <div class="col-md-4">
+        <input type="text" class="form-control" placeholder="Nhập số tín chỉ ..." id="input-tin-chi">
+      </div>
+      <div class="col-sm-2">
+        <button class="btn btn-info" id="btn-save-data" onclick="onBtnSaveDataClick()">Save data</button>
+      </div>
+    </div>
+  </div>
+  <!-- Kết thúc vùng form màu xám -->
+
+  <!-- vùng hiển thị thông tin môn học -->
+  <div id="div-container-subject" class="container bg-info" style="display: none;">
+    <div id="div-subject-infor" class="text-white p-3">...</div>
+  </div>
+
+  <script>
+    "use strict";
+    /*** REGION 1 - Global variables - Vùng khai báo biến, hằng số, tham số TOÀN CỤC */
+
+    /*** REGION 2 - Vùng gán / thực thi sự kiện cho các elements */
+
+    /*** REGION 3 - Event handlers - Vùng khai báo các hàm xử lý sự kiện */
+    function onBtnSaveDataClick() {
+      // khai báo đối tượng môn học chứa dữ liệu
+      var vMonHocObj = {
+        maMon: "",
+        tenMon: "",
+        soTinChi: 0
+      };
+      // B1: thu thập dữ liệu môn học và lưu vào đối tượng
+      getData(vMonHocObj);
+      // B2: kiểm tra dữ liệu đầu vào
+      var vCheck = checkData(vMonHocObj);
+      if (vCheck != false) {
+        vCheck = true;
+      }
+
+      // B3: ghi dữ liệu môn học và hiển thị vùng dữ liệu lên
+      if (vCheck === true) {
+        var bDivMain = document.getElementById("div-container-subject");
+        bDivMain.style.display = "block"
+        var bObjectInfo = document.getElementById("div-subject-infor");
+        bObjectInfo.innerHTML = `
+        Mã môn học : ${vMonHocObj.maMon} <br>
+        Tên môn học : ${vMonHocObj.tenMon} <br>
+        Số tín chỉ : ${vMonHocObj.soTinChi} <br>
+        `
+        console.log(`Lưu dữ liệu môn học.`)
+      }
+      else {
+        alert("Vui lòng kiểm tra lại")
+      }
+    }
+
+    /*** REGION 4 - Common funtions - Vùng khai báo hàm dùng chung trong toàn bộ chương trình*/
+    function getData(paramMonHocObj) {
+      var vMaMon = document.getElementById("input-ma-mon");
+      var vTenMon = document.getElementById("input-ten-mon");
+      var vTinChi = document.getElementById("input-tin-chi");
+
+      paramMonHocObj.maMon = vMaMon.value.trim();
+      paramMonHocObj.tenMon = vTenMon.value.trim();
+      paramMonHocObj.soTinChi = parseFloat(vTinChi.value.trim());
+
+
+    }
+    function checkData(paramMonHocObj) {
+      // Mã môn
+      if (paramMonHocObj.maMon == "") {
+        alert("Mã môn phải được nhập!")
+        return false;
+      }
+      if (paramMonHocObj.maMon.length != 6) {
+        alert("Mã môn phải có 6 ký tự")
+        return false;
+      }
+      // Tên môn
+      if (paramMonHocObj.tenMon == "") {
+        alert("Tên môn phải được nhập")
+        return false;
+      }
+      // Tín chỉ
+      if (isNaN(paramMonHocObj.soTinChi)) {
+        alert("Số tín chỉ phải được nhập")
+        return false;
+      }
+
+      if (paramMonHocObj.soTinChi < 1 || paramMonHocObj.soTinChi > 10) {
+        alert("Số tín chỉ phải trong khoảng 1 tới 10")
+        return false;
+      }
+    }
+  </script>
+</body>
+
+</html>
