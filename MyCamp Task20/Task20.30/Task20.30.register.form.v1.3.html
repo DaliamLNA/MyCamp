@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <title>3 bước xử lý register form</title>
+</head>
+
+<body>
+  <div class="container jumbotron p-5 mt-4">
+    <div class="text-center mb-5">
+      <h2>Responsive Register Form</h2>
+    </div>
+    <div class="row form-group">
+      <label class="col-sm-2 col-form-label" for="inp-fname">First Name <span class="text-danger">(*)</span></label>
+      <div class="col-sm-4">
+        <input type="text" id="inp-fname" placeholder="Your name.." class="form-control">
+      </div>
+
+      <label class="col-sm-2 col-form-label" for="inp-lname">Last Name <span class="text-danger">(*)</span></label>
+      <div class="col-sm-4">
+        <input type="text" id="inp-lname" placeholder="Your last name.." class="form-control">
+      </div>
+    </div>
+    <div class="row form-group">
+      <label class="col-sm-2 col-form-label">Country</label>
+      <div class="col-sm-4">
+        <select id="select-country" name="country" class="form-control">
+          <option value="01-au">Australia</option>
+          <option value="02-ca">Canada</option>
+          <option value="03-us">USA</option>
+          <option value="04-cn">China</option>
+        </select>
+      </div>
+      <label class="col-sm-2 col-form-label">Gender</label>
+      <div class="col-sm-4">
+        <select id="select-gender" name="country" class="form-control">
+          <option value="0-m">Male</option>
+          <option value="1-f">Female</option>
+        </select>
+      </div>
+    </div>
+    <div class="row form-group">
+      <label class="col-sm-2 col-form-label" for="inp-age">Age <span class="text-danger">(*)</span></label>
+      <div class="col-sm-4">
+        <input type="number" id="inp-age" placeholder="Your age.." class="form-control">
+      </div>
+      <label class="col-sm-2 col-form-label">Purpose</label>
+      <div class="col-sm-4">
+        <select id="select-purpose" name="country" class="form-control">
+          <option value="01-bu">Business</option>
+          <option value="02-pr">Private</option>
+          <option value="03-to">Tourist</option>
+          <option value="04-me">Medical</option>
+        </select>
+      </div>
+
+    </div>
+    <div class="row form-group text-right">
+      <div class="col-sm-12">
+        <button class="btn btn-info px-4" id="btn-send" onclick="onBtnSendClick()">Send Register</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- vùng hiển thị thông tin register mặc định bị ẩn -->
+  <div id="div-container-register" class="container bg-info" style="display: none;">
+    <div id="div-register-infor" class="text-white p-3">...</div>
+  </div>
+</body>
+<script>
+  "use strict";
+  /*** REGION 1 - Global variables - Vùng khai báo biến, hằng số, tham số TOÀN CỤC */
+
+  /*** REGION 2 - Vùng gán / thực thi hàm xử lý sự kiện cho các elements */
+
+  /*** REGION 3 - Event handlers - Vùng khai báo các hàm xử lý sự kiện */
+  function onBtnSendClick() {
+    var vInfo = {
+      firstname: "",
+      lastname: "",
+      country: "",
+      gender: "",
+      age: "",
+      purpose: ""
+    }
+    // Khai báo các dữ liệu 
+    var vFirstName = document.getElementById("inp-fname");
+    var vLastName = document.getElementById("inp-lname");
+    var vCountry = document.getElementById("select-country");
+    var vGender = document.getElementById("select-gender");
+    var vAge = document.getElementById("inp-age");
+    var vPurpose = document.getElementById("select-purpose");
+    // 
+    // Gán dữ liệu vào object
+    vInfo.firstname = vFirstName.value.trim();
+    vInfo.lastname = vLastName.value.trim();
+    vInfo.country = vCountry.value.trim();
+    vInfo.gender = vGender.value.trim();
+    vInfo.age = vAge.value.trim();
+    vInfo.purpose = vPurpose.value.trim();
+    // Validation 
+    if (validateInfo(vInfo) != false) {
+      showInfo(vInfo)
+    }
+    console.log(vInfo)
+  }
+  /*** REGION 4 - Common funtions - Vùng khai báo hàm dùng chung trong toàn bộ chương trình*/
+  // Hàm validate
+  function validateInfo(paramObject) {
+    // FNAME LNAME
+    if (paramObject.firstname == "") {
+      alert("Please check First Name");
+      return false;
+
+    }
+    if (paramObject.lastname == "") {
+      alert("Please check Last Name");
+      return false;
+
+    }
+    // Age 
+    if (isNaN(paramObject.age)) {
+      alert("Please check your Age");
+      return false;
+
+    }
+    if (paramObject.age < 18 || paramObject.age > 120) {
+      alert("Age must between 18 - 120");
+      return false;
+
+    }
+  }
+  // Hàm hiển thị
+  function showInfo(paramObject) {
+    var vDisplay = document.getElementById("div-container-register");
+    vDisplay.style.display = "block";
+    var vTextDisplay = document.getElementById("div-register-infor");
+
+    //
+    var vCountry = document.getElementById("select-country");
+    var vGender = document.getElementById("select-gender");
+    var vPurpose = document.getElementById("select-purpose");
+
+    var vCountryText = vCountry.options[vCountry.selectedIndex].text;
+    var vGenderText = vGender.options[vGender.selectedIndex].text;
+    var vPurposeText = vPurpose.options[vPurpose.selectedIndex].text;
+
+    //
+
+    vTextDisplay.innerHTML = `
+    First name : ${paramObject.firstname} <br>
+    Last name : ${paramObject.lastname}<br>
+    Country : ${vCountryText}<br>
+    Gender : ${vGenderText}<br>
+    Age: ${paramObject.age}<br>
+    Purpose: ${vPurposeText}<br>
+  
+    `
+  }
+</script>
+
+</html>
