@@ -92,13 +92,16 @@
         <td>
         </td>
         <td>
-          <button id="btn-goi-net1-basic" data-is-selected="N" class="btn-green">Đăng ký gói</button>
+          <button id="btn-goi-net1-basic" data-is-selected="N" class="btn-green" onclick="onBtnNet1BasicClick()">Đăng ký
+            gói</button>
         </td>
         <td>
-          <button id="btn-goi-net3-plus" data-is-selected="N" class="btn-green">Đăng ký gói</button>
+          <button id="btn-goi-net3-plus" data-is-selected="N" class="btn-green" onclick="onBtnNet3PlusClick()">Đăng ký
+            gói</button>
         </td>
         <td>
-          <button id="btn-goi-fast50" data-is-selected="N" class="btn-green">Đăng ký gói</button>
+          <button id="btn-goi-fast50" data-is-selected="N" class="btn-green" onclick="onBtnFast50Click()">Đăng ký
+            gói</button>
         </td>
       </tr>
     </table>
@@ -128,7 +131,8 @@
       </div>
     </div>
     <div class="mt-4 text-center">
-      <button class="btn btn-info px-5 py-2"> Send Data (Gửi thông tin gói đăng ký) </button>
+      <button class="btn btn-info px-5 py-2" onclick="onBtnSendDataClick()"> Send Data (Gửi thông tin gói đăng ký)
+      </button>
     </div>
   </div>
 </body>
@@ -137,15 +141,160 @@
   "use strict";
   /*** REGION 1 - Global variables - Vùng khai báo biến, hằng số, tham số TOÀN CỤC */
   const gPAC_NET1_BASIC = "BASIC";
-  const gPAC_NET3_PLUS= "PLUS";
+  const gPAC_NET3_PLUS = "PLUS";
   const gPAC_FAST50 = "FAST50";
 
   /*** REGION 2 - Vùng gán / thực thi hàm xử lý sự kiện cho các elements */
 
   /*** REGION 3 - Event handlers - Vùng khai báo các hàm xử lý sự kiện */
+  function onBtnNet1BasicClick() {
+    var vSelectedPackageStructure = getPackageObject(gPAC_NET1_BASIC, "30 Mbps", "10 Mbps", 20, 200000);
+    vSelectedPackageStructure.showPackageInfo();
+    markPackageButton(vSelectedPackageStructure.package);
+  }
+  function onBtnNet3PlusClick() {
+    var vSelectedPackageStructure = getPackageObject(gPAC_NET3_PLUS, "80 Mbps", "20 Mbps", 20, 250000);
+    vSelectedPackageStructure.showPackageInfo();
+    markPackageButton(vSelectedPackageStructure.package);
+  }
+  function onBtnFast50Click() {
+    var vSelectedPackageStructure = getPackageObject(gPAC_FAST50, "200 Mbps", "40 Mbps", 20, 300000);
+    markPackageButton(vSelectedPackageStructure.package);
+    vSelectedPackageStructure.showPackageInfo();
+  }
 
+
+  function onBtnSendDataClick() {
+    var vInfo = {
+      package: null,
+      name: "",
+      address: "",
+      email: "",
+      phonenumber: "",
+      showInfo: function () {
+        console.log("%c=======Thông tin người đặt hàng=======", "color : red")
+        console.log("Tên: " + this.name);
+        console.log("Địa chỉ: " + this.address);
+        console.log("Email: " + this.email);
+        console.log("Số điện thoại: " + this.phonenumber);
+        this.package.showPackageInfo();
+      }
+    }
+    // Get data
+    var vName = document.getElementById('inp-ho-va-ten');
+    var vAddress = document.getElementById('inp-dia-chi');
+    var vEmail = document.getElementById('inp-email');
+    var vPhoneNumber = document.getElementById('inp-so-dien-thoai');
+    // Gán data
+    vInfo.name = vName.value.trim();
+    vInfo.address = vAddress.value.trim();
+    vInfo.email = vEmail.value.trim();
+    vInfo.phonenumber = parseInt(vPhoneNumber.value.trim());
+    // Get Package Element
+    var vBtnNet1Basic = document.getElementById("btn-goi-net1-basic");
+    var vBtnNet3Plus = document.getElementById("btn-goi-net3-plus");
+    var vBtnFast50 = document.getElementById("btn-goi-fast50");
+    // Get package attribute
+    var vBtnNet1BasicAttribute = vBtnNet1Basic.getAttribute("data-is-selected");
+    var vBtnNet3PlusAttribute = vBtnNet3Plus.getAttribute("data-is-selected");
+    var vBtnFast50Attribute = vBtnFast50.getAttribute("data-is-selected");
+    // Check Attribute, Set chosen package
+    if (vBtnNet1BasicAttribute === "Y") {
+      vInfo.package = getPackageObject(gPAC_NET1_BASIC, "30 Mbps", "10 Mbps", 20, 200000);
+    }
+    if (vBtnNet3PlusAttribute === "Y") {
+      vInfo.package = getPackageObject(gPAC_NET3_PLUS, "80 Mbps", "20 Mbps", 20, 250000);
+    }
+    if (vBtnFast50Attribute === "Y") {
+      vInfo.package = getPackageObject(gPAC_FAST50, "200 Mbps", "40 Mbps", 20, 300000);
+    }
+    // if validate ok
+    if (validateInput(vInfo) != false) {
+      vInfo.showInfo();
+    }
+  }
   /*** REGION 4 - Common funtions - Vùng khai báo hàm dùng chung trong toàn bộ chương trình*/
+  function getPackageObject(paramPackage, paramDomestic, paramInternational, paramChannels, paramPricePerMonth) {
+    var vSelectedPackageStructure = {
+      package: paramPackage,
+      domestic: paramDomestic,
+      international: paramInternational,
+      channels: paramChannels,
+      pricePerMonthVND: paramPricePerMonth,
+      priceAnnualVND: function () {
+        return this.pricePerMonthVND * 12 * 0.85;
+      },
+      showPackageInfo: function () {
+        console.log("%cPACKAGE SELECTED - gói đăng ký cước được chọn..........", "color:blue");
+        console.log(this.package)
+        console.log("Băng thông trong nước: " + this.domestic);
+        console.log("Băng thông quốc tế: " + this.international);
+        console.log("Truyền hình: " + this.channels);
+        console.log("Giá theo tháng (VNĐ): " + this.pricePerMonthVND);
+        console.log("Giá theo năm (VNĐ): " + this.priceAnnualVND());
+      }
+    }
+    return vSelectedPackageStructure;
+  }
+  function markPackageButton(paramPackage) {
+    var vBtnNet1Basic = document.getElementById("btn-goi-net1-basic")
+    var vBtnNet3Plus = document.getElementById("btn-goi-net3-plus")
+    var vBtnFast50 = document.getElementById("btn-goi-fast50")
 
+    if (paramPackage === gPAC_NET1_BASIC) {
+      vBtnNet1Basic.className = "btn-yellow"
+      vBtnNet3Plus.className = "btn-green"
+      vBtnFast50.className = "btn-green"
+
+      vBtnNet1Basic.setAttribute("data-is-selected", "Y")
+      vBtnNet3Plus.setAttribute("data-is-selected", "N")
+      vBtnFast50.setAttribute("data-is-selected", "N")
+    }
+    if (paramPackage === gPAC_NET3_PLUS) {
+      vBtnNet1Basic.className = "btn-green"
+      vBtnNet3Plus.className = "btn-yellow"
+      vBtnFast50.className = "btn-green"
+
+      vBtnNet1Basic.setAttribute("data-is-selected", "N")
+      vBtnNet3Plus.setAttribute("data-is-selected", "Y")
+      vBtnFast50.setAttribute("data-is-selected", "N")
+    }
+    if (paramPackage === gPAC_FAST50) {
+      vBtnNet1Basic.className = "btn-green"
+      vBtnNet3Plus.className = "btn-green"
+      vBtnFast50.className = "btn-yellow"
+
+      vBtnNet1Basic.setAttribute("data-is-selected", "N")
+      vBtnNet3Plus.setAttribute("data-is-selected", "N")
+      vBtnFast50.setAttribute("data-is-selected", "Y")
+    }
+  }
+
+
+  // validate
+  function validateInput(paramObj) {
+    if (paramObj.package == null) {
+      alert("Vui lòng chọn package");
+      return false;
+    }
+    if (paramObj.name == "") {
+      alert("Vui lòng nhập họ và tên");
+      return false;
+    }
+    if (paramObj.address == "") {
+      alert("Kiểm tra lại địa chỉ");
+      return false;
+    }
+    if (paramObj.email.includes("@") == false || paramObj.email.includes(".") == false) {
+      alert("Kiểm tra lại email");
+      return false;
+    }
+    if (isNaN(paramObj.phonenumber)) {
+      alert("Kiểm tra lại số ĐT");
+      return false;
+    }
+
+  }
 </script>
 
 </html>
