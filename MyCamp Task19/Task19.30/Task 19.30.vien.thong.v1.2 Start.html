@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <title> Đăng ký cước viễn thông </title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <!-- Content -->
+  <div class="container">
+    <table class="table">
+      <tr class="text-center">
+        <th colspan="4">
+          <h2><b class="p-1">Đăng ký gói cước viễn thông</b></h2>
+        </th>
+      </tr>
+      <tr class="text-center">
+        <td>
+          Gói
+        </td>
+        <td>
+          <b>Net 1 Basic</b>
+        </td>
+        <td>
+          <b>Net 3 Plus</b>
+        </td>
+        <td>
+          <b>Fast 50</b>
+        </td>
+      </tr>
+      <tr class="text-center">
+        <td>
+          Băng thông trong nước
+        </td>
+        <td>
+          30 Mbps
+        </td>
+        <td>
+          80 Mbps
+        </td>
+        <td>
+          200 Mbps
+        </td>
+      </tr>
+      <tr class="text-center">
+        <td>
+          Băng thông quốc tế
+        </td>
+        <td>
+          10 Mbps
+        </td>
+        <td>
+          20 Mbps
+        </td>
+        <td>
+          40 Mbps
+        </td>
+      </tr>
+      <tr class="text-center">
+        <td>
+          Truyền hình
+        </td>
+        <td>
+          20 kênh
+        </td>
+        <td>
+          20 kênh
+        </td>
+        <td>
+          20 kênh
+        </td>
+      </tr>
+      <tr class="text-center">
+        <td>
+          Giá theo tháng (VNĐ)
+        </td>
+        <td>
+          200,000
+        </td>
+        <td>
+          250,000
+        </td>
+        <td>
+          300,000
+        </td>
+      </tr>
+      <tr class="text-center">
+        <td>
+        </td>
+        <td>
+          <button id="btn-goi-net1-basic" data-is-selected="N" class="btn-green">Đăng ký gói</button>
+        </td>
+        <td>
+          <button id="btn-goi-net3-plus" data-is-selected="N" class="btn-green">Đăng ký gói</button>
+        </td>
+        <td>
+          <button id="btn-goi-fast50" data-is-selected="N" class="btn-green">Đăng ký gói</button>
+        </td>
+      </tr>
+    </table>
+
+    <div id="div-contact-info" class="row mt-4">
+      <label class="col-sm-3 col-form-label"> Họ và tên</label>
+      <div class="form-group col-sm-9">
+        <input class="form-control" id="inp-ho-va-ten" placeholder="ví dụ: Nguyễn Thị Nga" />
+      </div>
+    </div>
+    <div id="div-contact-info" class="row">
+      <label class="col-sm-3 col-form-label"> Địa chỉ</label>
+      <div class="form-group col-sm-9">
+        <input class="form-control" id="inp-dia-chi" placeholder="ví dụ: Phường A, Quận B, Thành Phố C" />
+      </div>
+    </div>
+    <div id="div-contact-info" class="row">
+      <label class="col-sm-3 col-form-label"> Email</label>
+      <div class="form-group col-sm-9">
+        <input class="form-control" id="inp-email" placeholder="ví dụ email: abc@gmail.vidu.vn" />
+      </div>
+    </div>
+    <div id="div-contact-info" class="row">
+      <label class="col-sm-3 col-form-label"> Số điện thoại</label>
+      <div class="form-group col-sm-9">
+        <input class="form-control" id="inp-so-dien-thoai" placeholder="ví dụ: 0912345678" />
+      </div>
+    </div>
+    <div class="mt-4 text-center">
+      <button class="btn btn-info px-5 py-2"> Send Data (Gửi thông tin gói đăng ký) </button>
+    </div>
+  </div>
+</body>
+
+<script>
+  "use strict";
+  /*** REGION 1 - Global variables - Vùng khai báo biến, hằng số, tham số TOÀN CỤC */
+  const gPAC_NET1_BASIC = "BASIC";
+  const gPAC_NET3_PLUS= "PLUS";
+  const gPAC_FAST50 = "FAST50";
+
+  /*** REGION 2 - Vùng gán / thực thi hàm xử lý sự kiện cho các elements */
+
+  /*** REGION 3 - Event handlers - Vùng khai báo các hàm xử lý sự kiện */
+
+  /*** REGION 4 - Common funtions - Vùng khai báo hàm dùng chung trong toàn bộ chương trình*/
+
+</script>
+
+</html>
