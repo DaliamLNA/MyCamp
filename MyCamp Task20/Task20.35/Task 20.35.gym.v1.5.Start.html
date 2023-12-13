@@ -300,6 +300,10 @@
       alert("Kiểm tra lại tuổi");
       return false;
     }
+    if (paramObj.namSinh < 1900) {
+      alert("Kiểm tra lại tuổi, phải từ 1900 trở lên");
+      return false;
+    }
   }
 </script>
 
