@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task20.65</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+</head>
+<style>
+    body {
+        width: 100%;
+    }
+
+    .form-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 5px;
+        margin-top: 30px;
+    }
+
+    .div-input {
+        width: 300px;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    #btn-savedata {
+        border: none;
+        background-color: aqua;
+        width: 100px;
+        height: 50px;
+        margin-top: 10px;
+    }
+</style>
+
+<body>
+    <div class="form-container">
+        <div class="div-input">
+            <label for="Firstname">First name (*)</label>
+            <input type="text" id="inp-firstname" placeholder="First name ...">
+        </div>
+        <div class="div-input">
+            <label for="Lastname">Last name (*)</label>
+            <input type="text" id="inp-lastname" placeholder="Last name ...">
+        </div>
+        <div class="div-input">
+            <label for="Age">Age (*)</label>
+            <input type="number" id="inp-age" placeholder="Age ...">
+        </div>
+        <div class="div-input">
+            <label for="Email">Email (*)</label>
+            <input type="text" id="inp-email" placeholder="Email ...">
+        </div>
+        <Button id="btn-savedata" onclick="onBtnSaveData()">Save Data</Button>
+    </div>
+    <table id="table-person" class="table table-bordered" style="margin-top: 15px;">
+        <thead>
+            <!-- phần head, dòng tiêu đề  của bảng -->
+            <tr>
+                <td> First Name </td>
+                <td> Last Name </td>
+                <td> Age </td>
+                <td> Email </td>
+            </tr>
+            <thead>
+            <tbody>
+                <!-- phần dữ liệu của bảng -->
+                <tr>
+                    <td>Nga</td>
+                    <td>Do</td>
+                    <td>20</td>
+                    <td>ngado@gmail.com</td>
+                </tr>
+                <tr>
+                    <td>Nguyen</td>
+                    <td>Phuong Ha</td>
+                    <td>34</td>
+                    <td>hapn20@yahoo.com</td>
+                </tr>
+        <tbody>
+    </table>
+</body>
+<script>
+    "use strict";
+    /*** REGION 1 - Global variables - Vùng khai báo biến, hằng số, tham số TOÀN CỤC */
+    /*** REGION 2 - Vùng gán / thực thi sự kiện cho các elements */
+    /*** REGION 3 - Event handlers - Vùng khai báo các hàm xử lý sự kiện */
+    function onBtnSaveData() {
+        if(validateData() != false) {
+            addNewDataRow();
+        }
+    }
+    function addNewDataRow() {
+        "use strict";
+        const vEND_OF_TABLE = -1;
+        var vPersonTable = document.getElementById("table-person");
+        var vNewRow = vPersonTable.insertRow(vEND_OF_TABLE);
+        // them moi 04 cell (04 ô) (<td> </td> 
+        var vCellFirstName = vNewRow.insertCell(0);
+        var vCellLastName = vNewRow.insertCell(1);
+        var vCellAge = vNewRow.insertCell(2);
+        var vCellEmail = vNewRow.insertCell(3);
+        //gán giá trị cho các ô
+        vCellFirstName.innerHTML = document.getElementById('inp-firstname').value;
+        vCellLastName.innerHTML = document.getElementById('inp-lastname').value;
+        vCellAge.innerHTML = parseInt(document.getElementById('inp-age').value);
+        vCellEmail.innerHTML = document.getElementById('inp-email').value;
+    }
+    /*** REGION 4 - Common funtions - Vùng khai báo hàm dùng chung trong toàn bộ chương trình*/
+    function validateData() {
+        var vFirstname = document.getElementById('inp-firstname').value;
+        var vLastname = document.getElementById('inp-lastname').value;
+        var vAge = document.getElementById('inp-age').value;
+        var vEmail = document.getElementById('inp-email').value;
+
+        // Validate
+        if (vFirstname == "") {
+            alert("Nhập First Name");
+            return false;
+        }
+        if (vLastname == "") {
+            alert("Nhập Last Name");
+            return false;
+        }
+        if (vAge == "") {
+            alert("Nhập Age");
+            return false;
+        }
+        if (vAge < 1 || vAge > 150) {
+            alert("Tuổi phải từ 1-150");
+            return false;
+        }
+        if (vEmail == "") {
+            alert("Nhập email");
+            return false;
+        }
+        if (vEmail.includes("@") == false || vEmail.includes(".") == false) {
+            alert("Email sai");
+            return false;
+        }
+    }
+</script>
+
+</html>
