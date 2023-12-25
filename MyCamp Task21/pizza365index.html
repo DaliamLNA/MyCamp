@@ -369,35 +369,63 @@
 
   // CHANGE SIZE 
   function onBtnSizeSmall() {
+    var SizeObj = getSizeObject(gSMALL_SIZE, 20, 2, 200, 2, 150);
+    SizeObj.displaySizeObjInfo();
     changeSizeButtonColor(gSMALL_SIZE);
   }
   function onBtnSizeMedium() {
+    var SizeObj = getSizeObject(gMEDIUM_SIZE, 25, 4, 300, 3, 200);
+    SizeObj.displaySizeObjInfo();
     changeSizeButtonColor(gMEDIUM_SIZE);
 
   }
   function onBtnSizeLarge() {
+    var SizeObj = getSizeObject(gLARGE_SIZE, 30, 8, 500, 4, 250)
+    SizeObj.displaySizeObjInfo();
     changeSizeButtonColor(gLARGE_SIZE);
 
   }
   // CHANGE TYPE
   function onBtnTypeHawai() {
     changeTypeButtonColor(gHAWAI_TYPE);
+    console.log(`%c===============CHOSEN TYPE===============`, 'color : gray; font-size : 20px')
+    console.log(`%cHawai`, 'font-size : 20px')
   }
   function onBtnTypeHaiSan() {
     changeTypeButtonColor(gHAISAN_TYPE);
+    console.log(`%c===============CHOSEN TYPE===============`, 'color : gray; font-size : 20px')
+    console.log(`%cHai San`, 'font-size : 20px')
+
   }
   function onBtnTypeBacon() {
     changeTypeButtonColor(gBACON_TYPE);
+    console.log(`%c===============CHOSEN TYPE===============`, 'color : gray; font-size : 20px')
+    console.log(`%cBacon`, 'font-size : 20px')
   }
   /*** REGION 4 - Common funtions - Vùng khai báo hàm dùng chung trong toàn bộ chương trình*/
   // ========================================================= //
   // Get Size
-  function getSizeObject(paramDiameter, paramBakedRibs, paramSalad, paramSoftDrink, paramPrice) {
+  function getSizeObject(paramSize, paramDiameter, paramBakedRibs, paramSalad, paramSoftDrink, paramPrice) {
+    var vSizeObj = {
+      Size: paramSize,
+      Diameter: paramDiameter,
+      BakedRibs: paramBakedRibs,
+      Salad: paramSalad,
+      SoftDrink: paramSoftDrink,
+      Price: paramPrice,
+      displaySizeObjInfo() {
+        console.log(`%c===============CHOSEN SIZE===============`, 'color : gray; font-size : 20px')
+        console.log('%cSize : ', 'color : Yellow; font-size : 20px', this.Size)
+        console.log('Đường kính : ', this.Diameter, 'cm');
+        console.log('Sườn nướng  ', this.BakedRibs);
+        console.log('Salad : ', this.Salad, 'gram');
+        console.log('Nước ngọt : ', this.SoftDrink);
+        console.log('%cGiá : ', 'color : red', `${this.Price}.000 vnd`);
+      }
 
+    }
+    return vSizeObj;
   }
-
-  // Get Type
-  function getTypeObject() { }
 
   // Change Size Button Color
   function changeSizeButtonColor(paramSize) {
