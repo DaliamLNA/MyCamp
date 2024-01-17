@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container jumbotron">
+        <h2>Chuyển dữ liệu từ JSON string, vào object</h2>
+        <p id="p-json-person-john"></p>
+        <p id="p-json-person-lisa"></p>
+    </div>
+</body>
+
+<script>
+    // code mẫu
+
+    // 1.định nghĩa JSON string
+    var gJohnJSONPersonString = `{"name":"John Doe", "age":31, "city":"New York","cars":[ "Ford", "BMW", "Fiat"] }`;
+
+    // 2.parsing, chuyển JSON string thành Object
+    var gPersonJohn = JSON.parse(gJohnJSONPersonString);
+
+    //3. viết  car số 0  ra web
+    var gElementJsonPersonJohn = document.getElementById("p-json-person-john");
+    gElementJsonPersonJohn.innerHTML = "John first car: " + gPersonJohn.cars[0];
+    // debugger;
+</script>
+
+<script>
+    // hãy viết code của bạn cho Lisa
+    var gJsonLisaString = `{"name":"Lisa Moore", "age":23, "city" :"Atlanta", "cars" : [{"brand" : "Ford", "vid" : "VA-203911"}, {"brand" : "Mercedes", "vid" : "MA-82382"},{"brand" : "Honda", "vid" : "GG-32953"}]}`;
+    var gPersonLisa = JSON.parse(gJsonLisaString);
+    var gElementJsonPersonLisa = document.getElementById('p-json-person-lisa');
+    gElementJsonPersonLisa.innerHTML = "Lisa first car: " + gPersonLisa.cars[0].brand + " --- Vid : " + gPersonLisa.cars[0].vid + `<br>`;
+    gElementJsonPersonLisa.innerHTML += "Lisa second car: " + gPersonLisa.cars[1].brand + " --- Vid : " + gPersonLisa.cars[1].vid + `<br>`;
+    gElementJsonPersonLisa.innerHTML += "Lisa third car: " + gPersonLisa.cars[2].brand + " --- Vid : " + gPersonLisa.cars[2].vid + `<br>`;
+
+    //  name: Lisa Moore
+    //  age: 23
+    //  city: Atlanta
+    //  cars của Lisa sẽ có 02 thuộc tính, brand và vid  như sau
+    //       brand: Ford, vid: VA-203911
+    // 		 brand: Mercedes, vid: MA-82382
+    //       brand: Honda, vid: GG-32953
+
+</script>
+
+</html>
