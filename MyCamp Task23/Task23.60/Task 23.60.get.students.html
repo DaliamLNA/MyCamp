@@ -16,25 +16,27 @@
         </div>
         <div class="row form-group">
             <div class="col-sm-3">
-                <button class="btn btn-primary">Lấy thông tin</button>
+                <button class="btn btn-primary" onclick="onBtnGetAllInformation()">Lấy thông tin</button>
             </div>
-            <label class="col-form-label col-sm-4">Số lượng sinh viên: 
-                <span id="span-num-students" class="text-danger font-weight-bold">1000</span>
+            <label class="col-form-label col-sm-4">Số lượng sinh viên:
+                <span id="span-num-students" class="text-danger font-weight-bold"></span>
             </label>
         </div>
         <div class="row form-group">
-            <div class="col-sm-12">Danh sách ID sinh viên: 
-                <span id="span-id-student-list" class="text-danger">3, 4, 7, 8, 9, 10</span>
+            <div class="col-sm-12">Danh sách ID sinh viên:
+                <span id="span-id-student-list" class="text-danger"></span>
             </div>
         </div>
-        <br><hr>
+        <br>
+        <hr>
         <div class="row form-group">
-            <label class="col-form-label col-sm-4" for="input-student-id">Nhập Id sinh viên <span class="text-danger">(*)</span></label>
+            <label class="col-form-label col-sm-4" for="input-student-id">Nhập Id sinh viên <span
+                    class="text-danger">(*)</span></label>
             <div class="col-sm-5">
                 <input id="input-student-id" placeholder="Nhập id sinh viên ..." class="form-control">
             </div>
             <div class="col-sm-3">
-                <button class="btn btn-primary">Xem chi tiết</button>
+                <button class="btn btn-primary" onclick="onBtnGetIDInformation()">Xem chi tiết</button>
             </div>
         </div>
         <hr>
@@ -77,12 +79,81 @@
     </div>
 </body>
 <script>
+    "use strict";
     /*** REGION 1 - Global variables - Vùng khai báo biến, hằng số, tham số TOÀN CỤC */
-    
+    const gBASE_URL = "https://624abe0dfd7e30c51c110ac6.mockapi.io/api/v1/";
+    const gREQUEST_STATUS_OK = 200;
     /*** REGION 2 - Vùng gán / thực thi hàm xử lý sự kiện cho các elements */
+    function onBtnGetAllInformation() {
+        "use strict";
+        var vTotalNumberElement = document.getElementById('span-num-students');
+        var vIDList = document.getElementById('span-id-student-list');
+        // ----------- AJAX ----------
+        var vStudentsListJSON = processAjax(gBASE_URL + "/students");
+        var vStudentsList = JSON.parse(vStudentsListJSON);
 
+        vTotalNumberElement.innerHTML = vStudentsList.length;
+        for (var bI = 0; bI < vStudentsList.length; bI++) {
+            vIDList.innerHTML += vStudentsList[bI].id + ", ";
+        }
+    }
+    function onBtnGetIDInformation() {
+        // GET ID
+        var vIDInputElement = document.getElementById('input-student-id');
+        var vID = vIDInputElement.value;
+        console.log(vID);
+        // GET CATEGORIES' ELEMENT
+        var vStudentCodeElement = document.getElementById('input-student-code');
+        var vUsernameElement = document.getElementById('input-username');
+        var vFirstNameElement = document.getElementById('input-firstname');
+        var vLastNameElement = document.getElementById('input-lastname');
+        var vBirthdayElement = document.getElementById('input-birthday');
+        var vStudyYearElement = document.getElementById('input-study-year');
+        var vEmailElement = document.getElementById('input-email');
+        // Validate
+        var vValidationResult = validateData();
+        // AJAX CODE
+        if (vValidationResult == true) {
+            if (vValidationResult == true) {
+                var vStudentAJAXResponse = processAjax(gBASE_URL + "/students/" + vID);
+                var vStudentIDResult = JSON.parse(vStudentAJAXResponse);
+
+                vStudentCodeElement.value = vStudentIDResult.studentCode;
+                vUsernameElement.value = vStudentIDResult.username;
+                vFirstNameElement.value = vStudentIDResult.firstname;
+                vLastNameElement.value = vStudentIDResult.lastname;
+                vBirthdayElement.value = vStudentIDResult.birthday;
+                vStudyYearElement.value = vStudentIDResult.studyYear;
+                vEmailElement.value = vStudentIDResult.email;
+            }
+        }
+
+    }
     /*** REGION 3 - Event handlers - Vùng khai báo các hàm xử lý sự kiện */
-    
+    function processAjax(paramRequest) {
+        var vXhttp = new XMLHttpRequest();
+        vXhttp.open("GET", paramRequest, false);
+        vXhttp.send();
+        if (vXhttp.status == gREQUEST_STATUS_OK) {
+            console.log('Get Information Succesful');
+            return vXhttp.responseText;
+        }
+    }
+    function validateData() {
+        var vIdElement = document.getElementById('input-student-id');
+        var vId = vIdElement.value.trim();
+        if (vId == '') {
+            alert('Please input ID');
+            return false;
+        }
+        if (isNaN(vId)) {
+            alert('ID must be number')
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
     /*** REGION 4 - Common funtions - Vùng khai báo hàm dùng chung trong toàn bộ chương trình*/
 
 </script>
