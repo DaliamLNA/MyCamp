@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title> Task 25.05 </title>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+<body onload="onPageLoad()">
+  <!-- Bắt đầu vùng form nhập thông tin điểm -->
+  <div class="container jumbotron p-4 my-4">
+    <div class="text-center">
+      <h3 class="mb-4">F500 - Quản lý bảng điểm</h3>
+    </div>
+    <div class="row form-group">
+      <label class="col-md-3 col-form-label text-right">Sinh viên <span class="text-danger">(*)</span></label>
+      <div class="col-md-7">
+        <select id="select-sinh-vien" class="form-control">
+          <option value="0">-- Chọn sinh viên --</option>
+        </select>
+      </div>
+    </div>
+    <div class="row form-group">
+      <label class="col-md-3 col-form-label text-right">Môn học <span class="text-danger">(*)</span></label>
+      <div class="col-md-7">
+        <select id="select-mon-hoc" class="form-control">
+          <option value="0">-- Chọn môn học --</option>
+        </select>
+      </div>
+    </div>
+    <div class="row form-group">
+      <label class="col-md-3 col-form-label text-right">Ngày thi <span class="text-danger">(*)</span></label>
+      <div class="col-md-7">
+        <input type="text" class="form-control" placeholder="Ngày thi (dd/mm/yyyy)" id="input-ngay-thi">
+      </div>
+    </div>
+    <div class="row form-group">
+      <label class="col-md-3 col-form-label text-right">Điểm <span class="text-danger">(*)</span></label>
+      <div class="col-md-7">
+        <input type="text" class="form-control" placeholder="Nhập điểm ..." id="input-diem">
+      </div>
+      <div class="col-sm-2">
+        <button class="btn btn-success" id="btn-save-data" onclick="onBtnSaveData()">Save data</button>
+      </div>
+    </div>
+  </div>
+  <!-- Kết thúc vùng form nhập thông tin điểm -->
+
+  <!-- vùng hiển thị khi thêm điểm thành công -->
+  <div id="div-new-grade-success" class="container p-3 bg-success text-white" style="display: none;">
+
+  </div>
+</body>
+
+<script>
+  "use strict";
+  /*** REGION 1 - Global variables - Vùng khai báo biến, hằng số, tham số TOÀN CỤC */
+  const gREQUEST_STATUS_OK = 200;
+  const gREQUEST_CREATE_OK = 201;
+  const gREQUEST_READY_STATUS_FINISH_AND_OK = 4;
+
+  const gBASE_URL = "https://62454a477701ec8f724fb923.mockapi.io/api/v1/";
+
+  /*** REGION 2 - Vùng gán / thực thi sự kiện cho các elements */
+
+  /*** REGION 3 - Event handlers - Vùng khai báo các hàm xử lý sự kiện */
+  function onPageLoad() {
+    console.log('page loaded')
+    var vSinhVienElement = document.getElementById('select-sinh-vien');
+    var vMonHocElement = document.getElementById('select-mon-hoc');
+    // LOAD SINH VIEN LIST
+    var vAPI_URL_SinhVien = gBASE_URL + "/students/";
+    var vXmlHttp_SinhVien = new XMLHttpRequest();
+    processAjaxGet(vXmlHttp_SinhVien, vAPI_URL_SinhVien);
+    if (vXmlHttp_SinhVien.readyState == gREQUEST_READY_STATUS_FINISH_AND_OK && vXmlHttp_SinhVien.status == gREQUEST_STATUS_OK) {
+      var vSinhVienList = JSON.parse(vXmlHttp_SinhVien.responseText);
+      // console.log(vSinhVienList);
+      for (var bI = 0; bI < vSinhVienList.length; bI++) {
+        vSinhVienElement.innerHTML += `<option value="${vSinhVienList[bI].id}"> ${vSinhVienList[bI].firstname} ${vSinhVienList[bI].lastname}</option>`
+      }
+    }
+    // LOAD MON HOC LIST
+    var vAPI_URL_MonHoc = gBASE_URL + "/subjects/";
+    var vXmlHttp_MonHoc = new XMLHttpRequest();
+    processAjaxGet(vXmlHttp_MonHoc, vAPI_URL_MonHoc);
+    if (vXmlHttp_MonHoc.readyState == gREQUEST_READY_STATUS_FINISH_AND_OK && vXmlHttp_MonHoc.status == gREQUEST_STATUS_OK) {
+      var vMonHocList = JSON.parse(vXmlHttp_MonHoc.responseText);
+      for (var bI = 0; bI < vMonHocList.length; bI++) {
+        vMonHocElement.innerHTML += `<option value="${vMonHocList[bI].id}"> ${vMonHocList[bI].subjectName}</option>`
+      }
+      // console.log(vMonHocList);
+    }
+
+
+
+    var vAPI_TEST = gBASE_URL + "/grades";
+    var vXmlHttp = new XMLHttpRequest();
+    processAjaxGet(vXmlHttp, vAPI_TEST);
+    console.log(vXmlHttp.responseText);
+  }
+
+
+  function onBtnSaveData() {
+    // GET ELEMENTS
+    var vSinhVienElement = document.getElementById('select-sinh-vien');
+    var vMonHocElement = document.getElementById('select-mon-hoc');
+    var vNgayThiElement = document.getElementById('input-ngay-thi');
+    var vDiemElement = document.getElementById('input-diem');
+    // GET VALUES
+    var vSinhVien = vSinhVienElement.value;
+    var vMonHoc = vMonHocElement.value;
+    var vNgayThi = vNgayThiElement.value;
+    var vDiem = vDiemElement.value;
+    // Obejct 
+    var vObject = {
+      studentId: vSinhVien,
+      subjectId: vMonHoc,
+      grade: vDiem,
+      examDate: vNgayThi
+    }
+    var vObjectJSON = JSON.stringify(vObject);
+    // Validate
+    var vValidateStatus = validateData();
+    if (vValidateStatus == true) {
+      var vAPI_URL = gBASE_URL + "/grades";
+      var vXmlHttp = new XMLHttpRequest();
+      processAjaxPost(vXmlHttp, vAPI_URL, vObjectJSON);
+      hienthiThongBao();
+    }
+  }
+  /*** REGION 4 - Common funtions - Vùng khai báo hàm dùng chung trong toàn bộ chương trình*/
+  function processAjaxGet(paramRequest, paramUrl) {
+    paramRequest.open("GET", paramUrl, false);
+    paramRequest.send();
+  }
+  function processAjaxPost(paramRequest, paramUrl, paramObjectJson) {
+    paramRequest.open("POST", paramUrl, true);
+    paramRequest.setRequestHeader("Content-Type", "application/json");
+    paramRequest.send(paramObjectJson);
+    paramRequest.onreadystatechange = function () {
+      if (this.readyState == gREQUEST_READY_STATUS_FINISH_AND_OK && this.status == gREQUEST_CREATE_OK) {
+        console.log(paramRequest.responseText);
+      }
+    }
+  }
+  function validateData() {
+    // GET ELEMENTS
+    var vSinhVienElement = document.getElementById('select-sinh-vien');
+    var vMonHocElement = document.getElementById('select-mon-hoc');
+    var vNgayThiElement = document.getElementById('input-ngay-thi');
+    var vDiemElement = document.getElementById('input-diem');
+    // GET VALUES
+    var vSinhVien = vSinhVienElement.value;
+    var vMonHoc = vMonHocElement.value;
+    var vNgayThi = vNgayThiElement.value;
+    var vDiem = vDiemElement.value;
+    // VALIDATION
+    if (vSinhVien == 0) {
+      console.log('Select Sinh Vien');
+      return false;
+    }
+    if (vMonHoc == 0) {
+      console.log('Select Mon Hoc')
+      return false;
+    }
+    if (vNgayThi == "") {
+      console.log('Input Ngay Thi')
+      return false;
+    }
+    if (vDiem == "") {
+      console.log('Input Diem')
+      return false;
+    }
+    if (isNaN(vDiem)) {
+      console.log('Diem must be number')
+      return false;
+    }
+    else {
+      return true;
+    }
+  }
+  function hienthiThongBao() {
+    var vAlert = document.getElementById('div-new-grade-success');
+    vAlert.style.display = "block";
+    vAlert.innerHTML = `Thêm thành công`
+  }
+</script>
+
+</html>

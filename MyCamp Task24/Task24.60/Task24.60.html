@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 24.40</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<html>
+<!-- file html dùng để thử tác động của javascript vào các thành phần trang web-->
+<script>
+    "use strict";
+    /*** REGION 1 - Global variables - Vùng khai báo biến, hằng số, tham số TOÀN CỤC */
+    const gREQUEST_STATUS_OK = 200;
+    const gREQUEST_READY_STATUS_FINISH_AND_OK = 4;
+    //base url
+    const gBASE_URL = "http://203.171.20.210:8080/devcamp-lucky-dice/";
+    const gUTF8_TEXT_APPLICATON_HEADER = "application/json;charset=UTF-8";
+
+    /*** REGION 2 - Vùng gán / thực thi sự kiện cho các elements */
+
+
+    /*** REGION 3 - Event handlers - Vùng khai báo các hàm xử lý sự kiện */
+    function OnClickSendDice() {
+        "use strict";
+        //  b1 - Thu thập dữ liệu
+        // data to be sent by post method
+        var vPersonDataObject = {
+            firstname: "",
+            lastname: "",
+            username: ""
+        }
+        getPersonData(vPersonDataObject);
+        console.log(vPersonDataObject)
+        //  b2 - kiểm tra ()
+        var vValidateResult = validateCustomerInformation(vPersonDataObject);
+        console.log(vValidateResult)
+        if (vValidateResult == true) {
+            //  B3 - call api
+            // create a request
+            var vXmlHttpDice = new XMLHttpRequest();
+            // Chuyển object về JSON
+            var vPersonDataJSON = JSON.stringify(vPersonDataObject);
+            callLuckyDiceApi(vXmlHttpDice, vPersonDataJSON);
+            vXmlHttpDice.onreadystatechange = function () {
+                // Khi request đã xử lý xong và thành công!
+                if (this.readyState == gREQUEST_READY_STATUS_FINISH_AND_OK && this.status == gREQUEST_STATUS_OK) {
+                    //  B4 - hiển thị - ====================
+                    showResultApi(vXmlHttpDice.responseText);
+                }
+            }
+        }
+    }
+
+
+    /*** REGION 4 - Common funtions - Vùng khai báo hàm dùng chung trong toàn bộ chương trình*/
+    // GET DATA
+    function getPersonData(paramPerson) {
+        paramPerson.firstname = document.getElementById('inp-firstname').value;
+        paramPerson.lastname = document.getElementById('inp-lastname').value;
+        paramPerson.username = document.getElementById('inp-username').value;
+    };
+    // CALL API
+    function callLuckyDiceApi(paramXmlHttp, paramJson) {
+        paramXmlHttp.open("POST", gBASE_URL + "/dice", true);
+        paramXmlHttp.setRequestHeader("Content-Type", gUTF8_TEXT_APPLICATON_HEADER);
+        paramXmlHttp.send(paramJson);
+    }
+    // SHOW RESULT
+    function showResultApi(paramResponseText) {
+        var vResultElement = document.getElementById('p-result');
+        console.log(paramResponseText);
+        var vResponse = JSON.parse(paramResponseText);
+        var vDiceReady = vResponse.dice;
+        console.log(vResponse)
+        var vResult = "";
+        // CHECK VOUCHER
+        if (vResponse.voucher === null) {
+            vResult += "new dice: " + vDiceReady + "<br>";
+            console.log("ko co voucher")
+        }
+        else {
+            vResult += "id: " + vResponse.voucher.id + "<br>";
+            vResult += "ma voucher: " + vResponse.voucher.maVoucher + "<br>";
+            vResult += "phan tram giam gia: " + vResponse.voucher.phanTramGiamGia + "<br>";
+            vResult += "ghi chu: " + vResponse.voucher.ghiChu + "<br>";
+            vResult += "ngay tao: " + vResponse.voucher.ngayTao + "<br>";
+            vResult += "ngay cap nhat: " + vResponse.voucher.ngayCapNhat + "<br>";
+            vResult += "new dice: " + vDiceReady + "<br>";
+        }
+        // CHECK PRIZE
+        if (vResponse.prize === null) {
+            vResult += "ko co prize"
+        }
+        else {
+            vResult += vResponse.prize;
+        }
+        vResultElement.innerHTML = vResult;
+    }
+    // VALIDATE
+    function validateCustomerInformation(paramInformation) {
+        if (paramInformation.firstname == "") {
+            alert('please input firstname')
+            return false;
+        }
+        if (paramInformation.lastname == "") {
+            alert('please input lastname')
+            return false;
+        }
+        if (paramInformation.username == "") {
+            alert('please input username')
+            return false;
+        }
+        else {
+            return true
+        }
+    }
+</script>
+
+<body class="bg bg-light">
+    <div class="jumbotron container">
+        <div class="row form-group">
+            <p id="p-test" style="font-size:larger;">GET DICE</p>
+        </div>
+        <div class="row">
+            <div class="col-sm-3">
+                <label for="username">Username</label>
+            </div>
+            <div class="col-sm-9">
+                <input type="text" name="" id="inp-username">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3">
+                <label for="username">First Name</label>
+            </div>
+            <div class="col-sm-9">
+                <input type="text" name="" id="inp-firstname">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3">
+                <label for="username">Last Name</label>
+            </div>
+            <div class="col-sm-9">
+                <input type="text" name="" id="inp-lastname">
+            </div>
+        </div>
+        <div class="row form-group">
+            <button onclick="OnClickSendDice()" class="btn btn-success">Get New Dice</button>
+        </div>
+        <div class="row bg bg-warning">
+            <label for="result">Result : </label>
+            <p id="p-result">result here</p>
+        </div>
+    </div>
+</body>
+
+</html>

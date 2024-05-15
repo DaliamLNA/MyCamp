@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete student</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container w-50">
+        <div class="text-center m-3">
+            <h3>XÓA THÔNG TIN SINH VIÊN</h3>
+        </div>
+        <div class="row form-group">
+            <label class="col-form-label col-sm-4" for="input-student-id">Nhập Id sinh viên <span
+                    class="text-danger">(*)</span></label>
+            <div class="col-sm-4">
+                <input id="input-student-id" placeholder="Nhập id sinh viên ..." class="form-control">
+            </div>
+            <div class="col-sm-4">
+                <button class="btn btn-primary" onclick="onBtnIDCheckClick()">Kiểm tra</button>
+                <button id="btn-delete-student" class="btn btn-danger disable" disabled
+                    onclick="onBtnStudentIDDeleteClick()">Xóa SV</button>
+            </div>
+        </div>
+        <hr>
+        <div class="row form-group">
+            <label class="col-form-label col-sm-12" id="lbl-status">Trạng thái</label>
+        </div>
+</body>
+<script>
+    /*** REGION 1 - Global variables - Vùng khai báo biến, hằng số, tham số TOÀN CỤC */
+    const gREQUEST_STATUS_OK = 200;
+    const gREQUEST_READY_STATUS_FINISH_AND_OK = 4;
+    const gBASE_URL = "https://624abe0dfd7e30c51c110ac6.mockapi.io/api/v1/";
+
+    /*** REGION 2 - Vùng gán / thực thi hàm xử lý sự kiện cho các elements */
+
+    /*** REGION 3 - Event handlers - Vùng khai báo các hàm xử lý sự kiện */
+    function onBtnIDCheckClick() {
+        // Status Element
+        var vCheckStatus = document.getElementById('lbl-status');
+        // GET ID
+        var vIdInputElement = document.getElementById('input-student-id');
+        var vId = vIdInputElement.value.trim();
+        // Validate
+        var vValidateStatus = validateID(vId);
+        // AJAX
+        if (vValidateStatus == true) {
+            var vAPI_URL = gBASE_URL + "/students/";
+            var vXmlHttp = new XMLHttpRequest();
+            processAjaxGet(vXmlHttp, vId, vAPI_URL);
+            var vStatus = vXmlHttp.status;
+
+            if (vStatus == gREQUEST_STATUS_OK) {
+                vCheckStatus.innerHTML = "TÌM THẤY"
+                var vDisabledButton = document.getElementById('btn-delete-student');
+                vDisabledButton.disabled = false;
+                return vId;
+            }
+            else {
+                vCheckStatus.innerHTML = "KHÔNG TÌM THẤY"
+            }
+        }
+    }
+    function onBtnStudentIDDeleteClick() {
+        var vAPI_URL = gBASE_URL + "/students/";
+        var vId = onBtnIDCheckClick();
+        var vXmlHttp = new XMLHttpRequest();
+        processAjaxDelete(vXmlHttp, vId, vAPI_URL);
+        
+    }
+    /*** REGION 4 - Common funtions - Vùng khai báo hàm dùng chung trong toàn bộ chương trình*/
+    function validateID(paramId) {
+        if (paramId == '') {
+            alert('input id');
+            return false;
+        }
+        if (isNaN(paramId)) {
+            alert('id must be number');
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+    //  //  //  //  AJAX //  //  //  //
+    function processAjaxGet(paramRequest, paramId, paramUrl) {
+        "use strict";
+        paramRequest.open('GET', paramUrl + paramId, false);
+        paramRequest.send();
+    }
+    function processAjaxDelete(paramRequest, paramId, paramUrl) {
+        "use strict";
+        paramRequest.open('DELETE', paramUrl + paramId, true);
+        paramRequest.send();
+
+        paramRequest.onreadystatechange = function () {
+            if (this.readyState == gREQUEST_READY_STATUS_FINISH_AND_OK && this.status == gREQUEST_STATUS_OK) {
+                console.log('Xóa thành công')
+            }
+        }
+    }
+</script>
+
+</html>
