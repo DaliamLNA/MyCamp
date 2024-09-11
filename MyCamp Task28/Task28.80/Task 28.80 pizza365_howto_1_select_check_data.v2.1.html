@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<title>Pizza 365 project</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<body>
+  <div class="container">
+    <div class="text-center pt-5">
+      <span class="h3  border-bottom-3 pt-5">Chọn đồ uống</span>
+    </div>
+    <div class="form-group">
+      <label for="drink-select">Đồ uống</label>
+      <select class="form-control" id="drink-select">
+        <option>Chọn đồ uống</option>
+      </select>
+    </div>
+    <button id="show-result" class="btn btn-primary mb-2" style="width: 300px;">Hiển thị</button>
+  </div>
+  <div>
+    <h3 id="show-drink" class="text-center"></h3>
+  </div>
+
+  <script>
+    'use strict';
+    /*** REGION 1 - Global variables - Vùng khai báo biến, hằng số, tham số TOÀN CỤC */
+    const gREQUEST_STATUS_OK = 200;
+    const gREQUEST_READY_STATUS_FINISH_AND_OK = 4;
+    /*** REGION 2 - Vùng gán / thực thi sự kiện cho các elements */
+
+    /*** REGION 3 - Event handlers - Vùng khai báo các hàm xử lý sự kiện */
+
+    /*** REGION 4 - Common funtions - Vùng khai báo hàm dùng chung trong toàn bộ chương trình*/
+
+    var selectElement = document.getElementById("drink-select");
+
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function () {
+      if (this.readyState == gREQUEST_READY_STATUS_FINISH_AND_OK && this.status == gREQUEST_STATUS_OK) {
+        var drinkList = JSON.parse(xhttp.responseText);
+
+        for (let index = 0; index < drinkList.length; index++) {
+          let drink = drinkList[index];
+
+          let drinkOptionElement = document.createElement("option");
+          drinkOptionElement.value = drink.maNuocUong;
+          drinkOptionElement.text = drink.tenNuocUong;
+
+          selectElement.appendChild(drinkOptionElement);
+        }
+      }
+    };
+    xhttp.open("GET", "http://203.171.20.210:8080/devcamp-pizza365/drinks", true);
+    xhttp.send();
+  </script>
+  <script>
+    document.getElementById("show-result").addEventListener("click", function () {
+      let SelectedDrink = document.getElementById("drink-select").value
+      let SelectedDrinkObject
+      let ShowDrink = document.getElementById("show-drink");
+      let drinkList = JSON.parse(xhttp.responseText);
+      for (bI = 0; bI < drinkList.length; bI++) {
+        if (drinkList[bI].maNuocUong == SelectedDrink) {
+          SelectedDrinkObject = drinkList[bI];
+          console.log(SelectedDrinkObject)
+          ShowDrink.innerHTML = `
+            Tên nước uống : ${SelectedDrinkObject.tenNuocUong} <br>
+            Giá : ${SelectedDrinkObject.donGia}
+
+          `
+        }
+      }
+    });
+
+  </script>
+</body>
+
+</html>
